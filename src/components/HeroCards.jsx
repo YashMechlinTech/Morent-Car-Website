@@ -4,7 +4,7 @@ import LamboTwoImg from "../assets/LamboTwo.svg";
 const HeroCards = () => {
   return (
     <>
-      <div className="m-0 flex gap-2 m-2">
+      <div className="flex gap-2 m-2">
         <div
           style={{ backgroundColor: "rgb(84, 166, 255)" }}
           className="relative w-[50vw] h-[50vh] rounded-xl "
@@ -30,7 +30,6 @@ const HeroCards = () => {
             />
           </div>
         </div>
-
 
         {/* now for right side card  */}
 
