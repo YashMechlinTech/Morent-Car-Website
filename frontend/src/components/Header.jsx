@@ -17,7 +17,7 @@ const Header = () => {
         </h1>
         <div className='border-solid border-gray-400 border-[.5px] rounded-[20px]  '>
           <SearchIcon />
-          <input style={{border:'none', borderColor:'white',}}type="text" name="" id="" placeholder='search for cars'/>
+          <input className="focus:outline-none" style={{border:'none', borderColor:'white',width:'35vw'}}type="text" name="" id="" placeholder='search for cars'/>
           <TuneIcon/>
         </div>
       </div>

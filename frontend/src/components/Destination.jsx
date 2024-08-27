@@ -59,7 +59,7 @@ const Destination = () => {
               id="pickupLocation"
               value={pickupLocation}
               onChange={handlePickupLocationChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             >
               <option value="">Select your city</option>
               <option value="New York">New York</option>
@@ -76,7 +76,7 @@ const Destination = () => {
               id="pickupDate"
               value={pickupDate}
               onChange={handlePickupDateChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
           <div className="mt-4">
@@ -88,7 +88,7 @@ const Destination = () => {
               id="pickupTime"
               value={pickupTime}
               onChange={handlePickupTimeChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ const Destination = () => {
               id="dropoffLocation"
               value={dropoffLocation}
               onChange={handleDropoffLocationChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             >
               <option value="">Select your city</option>
               <option value="New York">New York</option>
@@ -133,7 +133,7 @@ const Destination = () => {
               id="dropoffDate"
               value={dropoffDate}
               onChange={handleDropoffDateChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
           <div className="mt-4">
@@ -145,12 +145,12 @@ const Destination = () => {
               id="dropoffTime"
               value={dropoffTime}
               onChange={handleDropoffTimeChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-xl border border-gray-300 bg-white py-2 px-3 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
         </div>
-        <div className="bg-white rounded-md p-4 shadow-md">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        <div className="bg-white rounded-xl p-4 shadow-md">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-[10vh] rounded-full">
             Book
           </button>
         </div>
