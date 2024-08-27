@@ -1,3 +1,18 @@
 from django.shortcuts import render
+from .models import Car
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import CarSerializer
 
-# Create your views here.
+
+class CarListView(APIView):
+    def get(self,request):
+        cars=Car.objects.all()
+        serializer=CarSerializer(cars,many=True)
+        return Response(serializer.data)
+  
+
+
+
+
+

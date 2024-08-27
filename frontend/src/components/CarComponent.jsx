@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import car1 from "../assets/Car-1.svg";
+
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../redux/cars/carSlice";
+const baseUrl = "http://localhost:8000";
 const CarCard = ({ car, onRentClick }) => {
   return (
     <div className="rounded-lg shadow-md p-4 bg-white">
       <img
-        src={car.imageUrl}
+        src={`${baseUrl}${car.image_url}`}
         alt={car.name}
         className="w-full h-40 rounded-lg object-cover mb-4"
       />
@@ -27,7 +28,7 @@ const CarCard = ({ car, onRentClick }) => {
 
 const CarList = () => {
   const dispatch = useDispatch();
-  const { cars1, loading } = useSelector((state) => state.cars); //set cars1 to cars later when api is called.
+  const { cars, loading } = useSelector((state) => state.cars);
 
   useEffect(() => {
     dispatch(fetchCars());
@@ -47,89 +48,89 @@ const CarList = () => {
 
   //   fetchcars();
 
-  const cars = [
-    {
-      name: "Koenigsegg",
-      imageUrl: { car1 },
-      description: "A supercar with incredible speed and performance.",
-      price: 99.0,
-    },
-    {
-      name: "Nissan GT-R",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Nissan/Nissan-GT-R-R35-2017.jpg",
-      description: "A powerful and stylish sports car.",
-      price: 80.0,
-    },
-    {
-      name: "Rolls-Royce",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Rolls-Royce/Rolls-Royce-Phantom-2017.jpg",
-      description: "A luxurious and elegant sedan.",
-      price: 96.0,
-    },
-    {
-      name: "Nissan GT-R",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Nissan/Nissan-GT-R-R35-2017.jpg",
-      description: "A powerful and stylish sports car.",
-      price: 90.0,
-    },
-    {
-      name: "All New Rush",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Toyota/Toyota-Rush-2018.jpg",
-      description: "A spacious and versatile SUV.",
-      price: 72.0,
-    },
-    {
-      name: "CR-V",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Honda/Honda-CR-V-2017.jpg",
-      description: "A popular and reliable compact SUV.",
-      price: 80.0,
-    },
-    {
-      name: "All New Terios",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Daihatsu/Daihatsu-Terios-2018.jpg",
-      description: "A compact and affordable SUV.",
-      price: 74.0,
-    },
-    {
-      name: "CR-V",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Honda/Honda-CR-V-2017.jpg",
-      description: "A popular and reliable compact SUV.",
-      price: 80.0,
-    },
-    {
-      name: "MOX Excite",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Mazda/Mazda-CX-3-2017.jpg",
-      description: "A stylish and sporty compact SUV.",
-      price: 76.0,
-    },
-    {
-      name: "New MG ZS",
-      imageUrl: "https://www.car-pictures.net/car-pictures/MG/MG-ZS-2018.jpg",
-      description: "A modern and affordable SUV.",
-      price: 80.0,
-    },
-    {
-      name: "MOX Excite",
-      imageUrl:
-        "https://www.car-pictures.net/car-pictures/Mazda/Mazda-CX-3-2017.jpg",
-      description: "A stylish and sporty compact SUV.",
-      price: 76.0,
-    },
-    {
-      name: "New MG ZS",
-      imageUrl: "https://www.car-pictures.net/car-pictures/MG/MG-ZS-2018.jpg",
-      description: "A modern and affordable SUV.",
-      price: 80.0,
-    },
-  ];
+  // const cars = [
+  //   {
+  //     name: "Koenigsegg",
+  //     imageUrl: { car1 },
+  //     description: "A supercar with incredible speed and performance.",
+  //     price: 99.0,
+  //   },
+  //   {
+  //     name: "Nissan GT-R",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Nissan/Nissan-GT-R-R35-2017.jpg",
+  //     description: "A powerful and stylish sports car.",
+  //     price: 80.0,
+  //   },
+  //   {
+  //     name: "Rolls-Royce",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Rolls-Royce/Rolls-Royce-Phantom-2017.jpg",
+  //     description: "A luxurious and elegant sedan.",
+  //     price: 96.0,
+  //   },
+  //   {
+  //     name: "Nissan GT-R",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Nissan/Nissan-GT-R-R35-2017.jpg",
+  //     description: "A powerful and stylish sports car.",
+  //     price: 90.0,
+  //   },
+  //   {
+  //     name: "All New Rush",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Toyota/Toyota-Rush-2018.jpg",
+  //     description: "A spacious and versatile SUV.",
+  //     price: 72.0,
+  //   },
+  //   {
+  //     name: "CR-V",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Honda/Honda-CR-V-2017.jpg",
+  //     description: "A popular and reliable compact SUV.",
+  //     price: 80.0,
+  //   },
+  //   {
+  //     name: "All New Terios",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Daihatsu/Daihatsu-Terios-2018.jpg",
+  //     description: "A compact and affordable SUV.",
+  //     price: 74.0,
+  //   },
+  //   {
+  //     name: "CR-V",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Honda/Honda-CR-V-2017.jpg",
+  //     description: "A popular and reliable compact SUV.",
+  //     price: 80.0,
+  //   },
+  //   {
+  //     name: "MOX Excite",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Mazda/Mazda-CX-3-2017.jpg",
+  //     description: "A stylish and sporty compact SUV.",
+  //     price: 76.0,
+  //   },
+  //   {
+  //     name: "New MG ZS",
+  //     imageUrl: "https://www.car-pictures.net/car-pictures/MG/MG-ZS-2018.jpg",
+  //     description: "A modern and affordable SUV.",
+  //     price: 80.0,
+  //   },
+  //   {
+  //     name: "MOX Excite",
+  //     imageUrl:
+  //       "https://www.car-pictures.net/car-pictures/Mazda/Mazda-CX-3-2017.jpg",
+  //     description: "A stylish and sporty compact SUV.",
+  //     price: 76.0,
+  //   },
+  //   {
+  //     name: "New MG ZS",
+  //     imageUrl: "https://www.car-pictures.net/car-pictures/MG/MG-ZS-2018.jpg",
+  //     description: "A modern and affordable SUV.",
+  //     price: 80.0,
+  //   },
+  // ];
 
   const handleRentClick = (car) => {
     console.log(`You have rented ${car.name}`);
@@ -137,9 +138,13 @@ const CarList = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {cars.map((car) => (
-        <CarCard key={car.name} car={car} onRentClick={handleRentClick} />
-      ))}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        cars.map((car, index) => (
+          <CarCard key={index} car={car} onRentClick={handleRentClick} />
+        ))
+      )}
     </div>
   );
 };
