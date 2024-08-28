@@ -58,7 +58,8 @@ MIDDLEWARE = [
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # React frontend URL
+    "http://localhost:5173",
+    "https://your-backend.vercel.app"
 ]
  
 # If you want to allow all origins (not recommended for production):
@@ -105,12 +106,26 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.dnkzqbcvonlvdosokffc',
+        'PASSWORD': 'YashMechlinTech',
+        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',
+        'PORT': '6543',
     }
 }
+
+
+
 
 
 # Password validation

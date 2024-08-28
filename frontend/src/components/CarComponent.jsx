@@ -9,7 +9,7 @@ const CarCard = ({ car, onRentClick }) => {
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
-        className="w-full h-40 rounded-lg object-cover mb-4"
+        className="w-full h-40 rounded-lg object-contain mb-4"
       />
       <h2 className="text-lg font-bold mb-2">{car.name}</h2>
       <p className="text-gray-600 mb-4">{car.description}</p>
