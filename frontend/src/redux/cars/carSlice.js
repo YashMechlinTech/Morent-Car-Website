@@ -1,15 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import supabase from "../../supabaseClient";
 import axios from "axios";
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-const environment = import.meta.env.VITE_ENV;
-
 //actions
 export const fetchCars = createAsyncThunk(
   "cars/fetchcars",
   async (page, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${apiBaseUrl}/cars`);
+     const response = await supabase.from('cars_car').select('*')
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

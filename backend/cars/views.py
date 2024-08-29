@@ -11,8 +11,3 @@ class CarListView(APIView):
         serializer=CarSerializer(cars,many=True)
         return Response(serializer.data)
   
-
-
-
-
-
