@@ -177,3 +177,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # CSRF_COOKIE_SECURE = True
 
 
+
+
+DEFAULT_FILE_STORAGE='django_storage_supabase.supabase'
+SUPABASE_URL=config('SUPABASE_URL')
+SUPABASE_API_KEY=config('SUPABASE_API_KEY')
+SUPABASE_ROOT_PATH=config('SUPABASE_ROOT_PATH')
+
+
