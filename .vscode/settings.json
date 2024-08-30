@@ -1,4 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "editor.cursorStyle": "underline",
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true
 }

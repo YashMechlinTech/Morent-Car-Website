@@ -4,6 +4,9 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SUPABASE_URL = config('SUPABASE_URL')
+SUPABASE_API_KEY = config('SUPABASE_API_KEY')
+SUPABASE_ROOT_PATH = config('SUPABASE_ROOT_PATH')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,6 +32,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "cars",
     "corsheaders",
+    
 ]
 
 MIDDLEWARE = [
@@ -41,6 +45,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+   
 ]
 
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
@@ -168,9 +173,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collected static files wi
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURE_SSL_REDIRECT = False
 # SESSION_COOKIE_SECURE = True
@@ -179,9 +183,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 
-DEFAULT_FILE_STORAGE='django_storage_supabase.supabase'
+DEFAULT_FILE_STORAGE=config('DEFAULT_FILE_STORAGE')
 SUPABASE_URL=config('SUPABASE_URL')
 SUPABASE_API_KEY=config('SUPABASE_API_KEY')
 SUPABASE_ROOT_PATH=config('SUPABASE_ROOT_PATH')
 
 
+BUCKET_NAME='media'
