@@ -36,7 +36,7 @@ const Header = ({ sidebarVisible, setSidebarVisible }) => {
 
 
             <TuneIcon
-              className="mr-2 hover:cursor-pointer"
+              className="mr-2 hover:cursor-default"
               onClick={() => {
                 setSidebarVisible(!sidebarVisible);
               }}

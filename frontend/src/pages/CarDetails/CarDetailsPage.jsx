@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import CarList from "./AllCars";
+import CarList from "../../components/AllCars";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../redux/cars/carSlice";
+import { fetchCars } from "../../redux/cars/carSlice";
 const baseUrl = "http://localhost:8000/media/";
 const CarDetailsPage = () => {
   const { id } = useParams(); //getting the carid from the url

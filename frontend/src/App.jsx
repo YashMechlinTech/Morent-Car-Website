@@ -5,34 +5,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeroCards from "./components/HeroCards";
 import Destination from "./components/Destination";
 import CarList from "./components/AllCars";
-import CarDetailsPage from "./components/CarDetailsPage";
+import CarDetailsPage from "./pages/CarDetails/CarDetailsPage";
 import { useState } from "react";
 import SidebarFilter from "./components/SidebarFilter";
-import AllCars from "./components/AllCars";
-
-
+import HomePage from "./pages/Home/HomePage";
 
 function App() {
-  const[sidebarVisible,setSidebarVisible]=useState(false)
+  const [sidebarVisible, setSidebarVisible] = useState(false);
   return (
     <>
       <BrowserRouter>
-        <Header sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible}/>
+        <Header
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
+        />
         {sidebarVisible && <SidebarFilter />}
 
         <Routes>
-          <Route
-            path="/"
-            element={
-              <> {sidebarVisible?<SidebarFilter/>:<></>}
-                <HeroCards />
-                <Destination />
-                <AllCars/>
-              </>
-            }
-          />
-          <Route path="/car/:id" element={<CarDetailsPage/>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/car/:id" element={<CarDetailsPage />} />
         </Routes>
+
         <Footer />
       </BrowserRouter>
     </>
