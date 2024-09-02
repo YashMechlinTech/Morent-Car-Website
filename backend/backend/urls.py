@@ -3,10 +3,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from cars import views
+from rest_framework.routers import DefaultRouter
+
+
+router=DefaultRouter()
+
+router.register('cars',views.CarModelViewSet,basename='cars')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("cars/", views.CarListView.as_view(), name="car-list"),
+    path('',include(router.urls))
 ]
 
 if settings.DEBUG:

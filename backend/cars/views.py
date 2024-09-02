@@ -1,13 +1,11 @@
 from django.shortcuts import render
 from .models import Car
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import viewsets
 from .serializers import CarSerializer
 
 
-class CarListView(APIView):
-    def get(self,request):
-        cars=Car.objects.all().distinct()
-        serializer=CarSerializer(cars,many=True)
-        return Response(serializer.data)
-  
+class CarModelViewSet(viewsets.ModelViewSet):
+    queryset=Car.objects.all()
+    serializer_class=CarSerializer
+
+
