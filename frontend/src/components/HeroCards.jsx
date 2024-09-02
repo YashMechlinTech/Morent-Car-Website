@@ -9,7 +9,7 @@ const HeroCards = () => {
           style={{ backgroundColor: "rgb(84, 166, 255)" }}
           className="relative w-[50vw] h-[50vh] rounded-xl "
         >
-          <div className="w-8/12">
+          <div className="w-8/12" >
             <p className="text-white font-[Plus Jakarta Sans] text-[3vw] mt-3 ml-2.5">
               The best platform for car rental.
             </p>
@@ -26,7 +26,7 @@ const HeroCards = () => {
             <img
               src={LamboImg}
               className="absolute top-[30vh] left-[13.5vw] w-[34vw] "
-              alt=""
+              alt="" 
             />
           </div>
         </div>

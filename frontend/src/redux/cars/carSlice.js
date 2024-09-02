@@ -13,6 +13,7 @@ export const fetchCars = createAsyncThunk(
   }
 );
 
+
 //reducers slice
 const carslice = createSlice({
   name: "cars",

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import searchicon from "../assets/searchicon.png";
 import favouriteImg from "../assets/favourite.svg";
 import notificationImg from "../assets/bell.svg";
 import settingsImg from "../assets/settings.svg";
@@ -15,11 +14,11 @@ const Header = () => {
           <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
             MORENT
           </h1>
-          <div className="border-solid border-gray-400 border-[.5px] rounded-[20px]  ">
+          <div className="border-solid border-gray-400 border-[.5px] rounded-[20px] mt-2">
             <SearchIcon />
             <input
               className="focus:outline-none"
-              style={{ border: "none", borderColor: "white", width: "35vw" }}
+              style={{ border: "none", borderColor: "white", width: "30vw" }}
               type="text"
               name=""
               id=""
