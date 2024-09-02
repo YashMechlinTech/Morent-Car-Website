@@ -1,0 +1,175 @@
+1. Update carsSlice.js
+Add a searchQuery field to the initial state, and add a reducer to handle search query updates. You’ll also need to filter cars based on the search query in your CarList component:
+
+javascript
+Copy code
+// src/redux/cars/carSlice.js
+
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import supabase from "../../supabaseClient";
+
+// Fetch cars from supabase
+export const fetchCars = createAsyncThunk(
+  "cars/fetchCars",
+  async (page, { rejectWithValue }) => {
+    try {
+      const response = await supabase.from('cars_car').select('*');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// Create the cars slice
+const carSlice = createSlice({
+  name: "cars",
+  initialState: {
+    cars: [],
+    loading: false,
+    searchQuery: "", // Add search query to the state
+    error: null,
+  },
+  reducers: {
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCars.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCars.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cars = [...state.cars, ...action.payload]; // Adding the results
+      })
+      .addCase(fetchCars.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      });
+  },
+});
+
+export const { setSearchQuery } = carSlice.actions;
+export default carSlice.reducer;
+2. Update Header Component
+Update the Header component to dispatch the setSearchQuery action when the search input changes:
+
+jsx
+Copy code
+// src/components/Header.jsx
+
+import React from "react";
+import SearchIcon from '@mui/icons-material/Search';
+import TuneIcon from '@mui/icons-material/Tune';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchQuery } from '../redux/cars/carSlice';
+
+const Header = () => {
+  const dispatch = useDispatch();
+  const searchQuery = useSelector((state) => state.cars.searchQuery);
+
+  const handleChange = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
+
+  return (
+    <header>
+      <nav className="flex flex-wrap items-center justify-between p-4 bg-white">
+        <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
+          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">MORENT</h1>
+          <div className='border-solid border-gray-400 border-[.5px] rounded-[20px]'>
+            <SearchIcon />
+            <input
+              className="focus:outline-none"
+              style={{ border: 'none', borderColor: 'white', width: '35vw' }}
+              type="text"
+              placeholder='search for cars'
+              value={searchQuery}
+              onChange={handleChange}
+            />
+            <TuneIcon />
+          </div>
+        </div>
+        {/* Other icons */}
+      </nav>
+    </header>
+  );
+};
+
+export default Header;
+3. Update CarList Component
+Filter the list of cars based on the searchQuery from the Redux store:
+
+jsx
+Copy code
+// src/components/CarList.jsx
+
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCars } from "../redux/cars/carSlice";
+
+const baseUrl = "http://localhost:8000/media/";
+
+const CarCard = ({ car, onRentClick }) => (
+  <div className="rounded-lg shadow-md p-4 bg-white">
+    <img
+      src={`${baseUrl}${car.image_url}`}
+      alt={car.name}
+      className="w-full h-40 rounded-lg object-contain mb-4"
+    />
+    <h2 className="text-lg font-bold mb-2">{car.name}</h2>
+    <p className="text-gray-600 mb-4">{car.description}</p>
+    <div className="flex justify-between items-center">
+      <span className="text-lg font-bold">${car.price}/day</span>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        onClick={() => onRentClick(car)}
+      >
+        Rent Now
+      </button>
+    </div>
+  </div>
+);
+
+const CarList = () => {
+  const dispatch = useDispatch();
+  const { cars, loading, searchQuery } = useSelector((state) => state.cars);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
+
+  const handleRentClick = (car) => {
+    console.log(`You have rented ${car.name}`);
+  };
+
+  // Filter cars based on searchQuery
+  const filteredCars = cars.filter(car =>
+    car.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        filteredCars.map((car, index) => (
+          <CarCard key={index} car={car} onRentClick={handleRentClick} />
+        ))
+      )}
+    </div>
+  );
+};
+
+export default CarList;
+Summary
+Redux State: Added searchQuery to the Redux state and a reducer to update it.
+Header Component: Dispatches the setSearchQuery action on input change.
+CarList Component: Filters the cars based on the search query from Redux and renders the filtered list.
+By managing the search query with Redux, you ensure that the search state is consistently available across components and can be easily accessed and manipulated.
+
+
+
+

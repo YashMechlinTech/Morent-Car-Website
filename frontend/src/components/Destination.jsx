@@ -149,8 +149,8 @@ const Destination = () => {
             />
           </div>
         </div>
-        <div className="bg-white rounded-xl p-4 shadow-md">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-[10vh] rounded-full">
+        <div className="">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-[22.5vh] rounded-full ">
             Book
           </button>
         </div>

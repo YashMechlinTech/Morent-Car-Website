@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import supabase from "../../supabaseClient";
-import axios from "axios";
 //actions
 export const fetchCars = createAsyncThunk(
   "cars/fetchcars",

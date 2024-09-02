@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../redux/cars/carSlice";
-const baseUrl = "https://dnkzqbcvonlvdosokffc.supabase.co";
+const baseUrl = "http://localhost:8000/media/";
 const CarCard = ({ car, onRentClick }) => {
   return (
     <div className="rounded-lg shadow-md p-4 bg-white">
