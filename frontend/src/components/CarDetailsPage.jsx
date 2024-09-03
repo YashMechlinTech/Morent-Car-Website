@@ -1,25 +1,28 @@
 import React, { useEffect } from "react";
-import CarList from "../../components/AllCars";
+import CarList from "./CarList";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../../redux/cars/carSlice";
+import { fetchCars } from "../redux/cars/carSlice";
 const baseUrl = "http://localhost:8000/media/";
 const CarDetailsPage = () => {
-  const { id } = useParams(); //getting the carid from the url
+  const { id } = useParams(); //getting the id from the url
+
   const dispatch = useDispatch();
   const { cars, loading } = useSelector((state) => state.cars);
+
+  const carId = parseInt(id);
 
   useEffect(() => {
     if (cars.length === 0) {
       dispatch(fetchCars());
     }
   }, [dispatch, cars.length]);
-  
-  const car = cars.find((car) => car.id === parseInt(id)); //returing the car with the particular id and but also the
+
+  const car = cars.find((car) => car.id);
 
   return (
     <>
-      {loading ? <>Loading...</> : <CarCard car={car} />}
+      <CarCard car={car} />
       <CarList />
     </>
   );

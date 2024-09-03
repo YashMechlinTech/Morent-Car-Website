@@ -18,7 +18,7 @@ const HeroCards = () => {
             </p>
 
             <button
-              className="ml-[1vw] top-[20vh] left-0  text-white p-1.5 rounded-md "
+              className="ml-[1vw] top-[20vh] left-0  text-white p-1.5 rounded-md ml-2.5"
               style={{ backgroundColor: "hsl(225, 80%, 56%)" }}
             >
               Rental Car
