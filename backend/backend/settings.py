@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-#$rhiv*4%7!d)e##m^$r&j=gbp3jjk!wb@thdd%q5+vki#t7^(
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["localhost", ".vercel.app"]
+ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1"]
 
 
 # Application definition
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "cars",
     "corsheaders",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -166,16 +167,71 @@ STATIC_ROOT = os.path.join(
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-# SECURE_SSL_REDIRECT = False
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+# Configure the default file storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+
+# Supabase storage configuration
+# AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
+# AWS_SECRET_ACCESS_KEY = '2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a'
+# AWS_STORAGE_BUCKET_NAME = 'media'
+# AWS_S3_ENDPOINT_URL = 'https://dnkzqbcvonlvdosokffc.supabase.co/storage/v1/s3'
+# AWS_S3_REGION_NAME = 'ap-south-1'  # Replace with your region
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = 'public-read'  # This makes files publicly accessible
+
+# AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
+# AWS_SECRET_ACCESS_KEY = '2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a'
+
+# if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:        
+#     AWS_STORAGE_BUCKET_NAME = 'media'
+#     AWS_S3_SIGNATURE_NAME = 's3v4'
+#     AWS_S3_REGION_NAME = 'ap-south-1'
+#     AWS_S3_FILE_OVERWRITE = False
+#     AWS_DEFAULT_ACL = 'public-read'
+#     AWS_S3_VERIFY = True
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-# DEFAULT_FILE_STORAGE = "django_storage_supabase.supabase"
-# SUPABASE_URL = config("SUPABASE_URL")
-# SUPABASE_API_KEY = config("SUPABASE_API_KEY")
-# SUPABASE_ROOT_PATH = config("SUPABASE_ROOT_PATH")
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "storages.backends.s3.S3Storage",
+#         "OPTIONS": {
+#             "access_key": "9ebc15019aa6046dfaec3bf3646ec237",
+#             "secret_key": "2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a",
+#             "bucket_name": "media",
+#             "region_name": "ap-south-1",
+#             "file_overwrite": False,
+#             "default_acl": "public-read",
+#             "signature_version": "s3v4",
+#         },
+#      },
+#         "staticfiles": {
+#         "BACKEND": "django.core.files.storage.FileSystemStorage",
+#         "OPTIONS": {
+#             "location": "static",  # Where your static files will be stored on the server
+#             "base_url": "/static/",  # The base URL used to serve static files
+#         },
+#     },
+    
+# }
+
+
+# Use the S3Boto3Storage backend for default file storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Supabase S3 configuration
+AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
+AWS_SECRET_ACCESS_KEY = '2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a'
+AWS_STORAGE_BUCKET_NAME = 'test'
+AWS_S3_ENDPOINT_URL = 'https://dnkzqbcvonlvdosokffc.supabase.co/storage/v1/s3'
+AWS_S3_REGION_NAME = 'ap-south-1'  # Replace with your Supabase region
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.ap-south-1.supabase.co'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_DEFAULT_ACL = None # Recommended for security
+
+# Optional settings
+# AWS_QUERYSTRING_AUTH = False
