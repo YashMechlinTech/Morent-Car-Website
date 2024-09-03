@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,12 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','.vercel.app']
+ALLOWED_HOSTS = ["localhost", ".vercel.app"]
 
 
 # Application definition
@@ -47,12 +48,12 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-   "https://dnkzqbcvonlvdosokffc.supabase.co"
+    "https://dnkzqbcvonlvdosokffc.supabase.co",
 ]
- 
+
 # If you want to allow all origins (not recommended for production):
 # CORS_ALLOW_ALL_ORIGINS = True
- 
+
 # You can also specify the allowed HTTP methods (optional):
 CORS_ALLOW_METHODS = [
     "GET",
@@ -62,7 +63,7 @@ CORS_ALLOW_METHODS = [
     "DELETE",
     "OPTIONS",
 ]
- 
+
 # And allowed headers (optional):
 CORS_ALLOW_HEADERS = [
     "Content-Type",
@@ -105,18 +106,15 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'postgres',
-        'USER': 'postgres.dnkzqbcvonlvdosokffc',
-        'PASSWORD':'YashMechlinTech',
-        'HOST':'aws-0-ap-south-1.pooler.supabase.com',
-        'PORT':'6543',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres.dnkzqbcvonlvdosokffc",
+        "PASSWORD": "YashMechlinTech",
+        "HOST": "aws-0-ap-south-1.pooler.supabase.com",
+        "PORT": "6543",
     }
 }
-
-
-
 
 
 # Password validation
@@ -154,8 +152,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 DEBUG = True
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collected static files will be here
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(
+    BASE_DIR, "staticfiles"
+)  # Collected static files will be here
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),  # Local static files
@@ -177,11 +177,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # CSRF_COOKIE_SECURE = True
 
 
-
-
-DEFAULT_FILE_STORAGE='django_storage_supabase.supabase'
-SUPABASE_URL=config('SUPABASE_URL')
-SUPABASE_API_KEY=config('SUPABASE_API_KEY')
-SUPABASE_ROOT_PATH=config('SUPABASE_ROOT_PATH')
-
-
+DEFAULT_FILE_STORAGE = "django_storage_supabase.supabase"
+SUPABASE_URL = config("SUPABASE_URL")
+SUPABASE_API_KEY = config("SUPABASE_API_KEY")
+SUPABASE_ROOT_PATH = config("SUPABASE_ROOT_PATH")
