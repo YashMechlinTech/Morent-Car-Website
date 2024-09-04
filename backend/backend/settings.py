@@ -169,9 +169,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-# Configure the default file storage
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+# # Configure the default file storage
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
 
 # Supabase storage configuration
 # AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
@@ -220,7 +220,7 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
 
 
 # Use the S3Boto3Storage backend for default file storage
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Supabase S3 configuration
 AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
