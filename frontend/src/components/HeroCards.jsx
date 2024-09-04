@@ -31,7 +31,7 @@ const HeroCards = () => {
           </div>
         </div>
 
-        {/* now for right side card  */}
+       
 
         <div
           style={{ backgroundColor: "hsl(225, 80%, 56%)" }}
