@@ -9,18 +9,25 @@ import {
   FormControl,
   colors,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  //const navigate=useNavigate()
-  const handleSubmit = (event) => {
-    event.preventDefault();
+
+  const navigate=useNavigate()
+  const {login}=useAuth();
+ 
+  const handleLogin = () => {
+
+    login();
+    navigate('/')
     alert(`Welcome! ${email}`);
   };
 
   const handleSignUp = () => {
-    // navigate('/signup')
+    navigate('/register')
   };
 
   return (
@@ -43,7 +50,7 @@ const LoginPage = () => {
         <Typography variant="h5" align="center" style={{ fontWeight: "bold" }}>
           Sign In
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <Grid container spacing={2} direction="column" alignItems="center">
             {/* <FormControl> */}
             <Grid item>
