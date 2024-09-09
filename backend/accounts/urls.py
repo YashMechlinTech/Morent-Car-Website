@@ -5,5 +5,6 @@ from accounts import views
 urlpatterns = [
     # JWT-based login and token routes
     path('register/', views.register, name='register'),
+    path('login/',views.login,name='login')
    
 ]
