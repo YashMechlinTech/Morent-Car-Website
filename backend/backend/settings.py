@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "cars",
     "corsheaders",
     "storages",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -44,10 +45,7 @@ MIDDLEWARE = [
 
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://dnkzqbcvonlvdosokffc.supabase.co",
-]
+CORS_ALLOW_ALL_ORIGINS = True 
 
 # If you want to allow all origins (not recommended for production):
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -234,3 +232,10 @@ AWS_DEFAULT_ACL = None # Recommended for security
 
 # Optional settings
 # AWS_QUERYSTRING_AUTH = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+

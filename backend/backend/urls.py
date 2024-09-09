@@ -12,7 +12,8 @@ router.register('cars',views.CarModelViewSet,basename='cars')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('auth/',include('accounts.urls'))
 ]
 
 if settings.DEBUG:

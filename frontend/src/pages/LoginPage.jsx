@@ -11,21 +11,35 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
+import axios from 'axios'
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
-  const navigate=useNavigate()
-  const {login}=useAuth();
  
-  const handleLogin = () => {
+  const {login}=useAuth();
+  const handleLogin = async (e) => {
+    const navigate=useNavigate()
+    e.preventDefault();
 
-    login();
-    navigate('/')
-    alert(`Welcome! ${email}`);
+    try {
+      const response = await axios.post("http://localhost:8000/auth/login/", {
+        email,
+        password,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+  
+      navigate("/");
+      alert(response.data.message);
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      alert(error.response?.data?.error || "Login failed");
+    }
+   
   };
-
   const handleSignUp = () => {
     navigate('/register')
   };
