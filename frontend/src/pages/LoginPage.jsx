@@ -59,6 +59,7 @@ const LoginPage = () => {
                 fullWidth
                 label="Email Address"
                 type="email"
+                name="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
@@ -70,6 +71,7 @@ const LoginPage = () => {
                 fullWidth
                 label="password"
                 type="password"
+                name="password"
                 value={password}
                 onChange={(event) => setpassword(event.target.value)}
                 required
