@@ -30,15 +30,16 @@ const RegistrationPage = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
     console.log("Form data:", formData);
-    // Add logic to submit the form data, e.g., API call
   };
-
   return (
-    <Container maxWidth="md" >
+    <Container maxWidth="md">
       <Typography
         variant="h1"
         align="center"
@@ -63,7 +64,7 @@ const RegistrationPage = () => {
           </Typography>
           <Grid container spacing={2}>
             {/* Full Name */}
-            <Grid item xs={12} >
+            <Grid item xs={12}>
               <TextField
                 label="Full Name"
                 name="fullName"
