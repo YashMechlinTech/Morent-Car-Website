@@ -9,8 +9,12 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+
 
 const RegistrationPage = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -30,14 +34,28 @@ const RegistrationPage = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    console.log("Form data:", formData);
+    try {
+      await axios.post('http://localhost:8000/auth/register/', {
+        full_name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        confirm_password: formData.confirmPassword
+      });
+
+      alert("Registration successful!");
+      navigate('/login');
+    } catch (error) {
+      console.error("Registration error:", error.response ? error.response.data : error.message);
+      setError("Registration failed. Please try again.");  // Set error message
+    }
   };
+
   return (
     <Container maxWidth="md">
       <Typography
