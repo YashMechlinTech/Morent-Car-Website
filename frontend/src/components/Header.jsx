@@ -5,44 +5,61 @@ import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button  } from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
+import { Button, Alert, Snackbar } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
+
 const Header = ({ onSearch }) => {
-  const navigate=useNavigate()
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     onSearch(e.target.value);
   };
-const {logout}=useAuth()
-const handleLogout = async () => {
-  try {
-    const response = await axios.post(
-      "http://localhost:8000/auth/logout/",
-      {
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+  const { logout } = useAuth();
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/auth/logout/",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Clear any client-side data (like tokens)
+        localStorage.removeItem("authToken");
+        logout(); //setting the is authenticated to the false/Null
+        // Show success message
+        setSnackbarMessage("Logout successful!");
+        setSnackbarSeverity("success");
+        setSnackbarOpen(true);
+        // Optionally redirect to login or home page
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        console.error("Failed to log out:", response.data);
+        setSnackbarMessage("Logout failed. Please try again.");
+        setSnackbarSeverity("error");
+        setSnackbarOpen(true);
       }
-    );
-    
-    if (response.status === 200) {
-      // Clear any client-side data (like tokens)
-      localStorage.removeItem('authToken');
-      logout() //setting the is authenticated to the false/Null 
-      
-      // Optionally redirect to login or home page
-      navigate('/login');  
-    } else {
-      console.error('Failed to log out:', response.data);
+    } catch (error) {
+      console.error("Error during logout:", error);
+      setSnackbarMessage("Error during logout. Please try again.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
     }
-  } catch (error) {
-    console.error('Error during logout:', error);
-  }
-};
+  };
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <header>
@@ -81,11 +98,28 @@ const handleLogout = async () => {
             className="h-8 w-8 border border-gray-300 rounded-full p-1 "
           />
           <img src={profileImg} alt="Profile" className="h-8 w-8 border-none" />
-          <Button onClick={handleLogout} variant="contained" endIcon={<LogoutIcon />}>
+          <Button
+            onClick={handleLogout}
+            variant="contained"
+            endIcon={<LogoutIcon />}
+          >
             Logout
           </Button>
         </div>
       </nav>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </header>
   );
 };
