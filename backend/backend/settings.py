@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
-import ssl
-ssl._create_default_https_context=ssl._create_unverified_context
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -12,7 +11,7 @@ SECRET_KEY = 'django-insecure-#$rhiv*4%7!d)e##m^$r&j=gbp3jjk!wb@thdd%q5+vki#t7^(
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1",".onrender.com",]
+ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1",".onrender.com","backend.onrender.com"]
 
 
 # Application definition
