@@ -51,8 +51,7 @@ const RegistrationPage = () => {
       alert("Registration successful!");
       navigate('/login');
     } catch (error) {
-      console.error("Registration error:", error.response ? error.response.data : error.message);
-      setError("Registration failed. Please try again.");  // Set error message
+      console.error("Registration error:", error.response ? error.response.data : error.message); // Set error message
     }
   };
 
