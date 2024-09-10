@@ -33,7 +33,6 @@ const Header = ({ onSearch }) => {
       );
 
       if (response.status === 200) {
-        // Clear any client-side data (like tokens)
         //setting the is authenticated to the false/Null
         // Show success message
         setSnackbarMessage("Logout successful!");
