@@ -5,10 +5,44 @@ import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
-const Header = ({onSearch}) => {
-const handleInputChange=(e)=>{
-  onSearch(e.target.value)
-}
+import { Button  } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+const Header = ({ onSearch }) => {
+  const navigate=useNavigate()
+  const handleInputChange = (e) => {
+    onSearch(e.target.value);
+  };
+const {logout}=useAuth()
+const handleLogout = async () => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8000/auth/logout/",
+      {
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    
+    if (response.status === 200) {
+      // Clear any client-side data (like tokens)
+      localStorage.removeItem('authToken');
+      logout() //setting the is authenticated to the false/Null 
+      
+      // Optionally redirect to login or home page
+      navigate('/login');  
+    } else {
+      console.error('Failed to log out:', response.data);
+    }
+  } catch (error) {
+    console.error('Error during logout:', error);
+  }
+};
 
   return (
     <header>
@@ -26,7 +60,7 @@ const handleInputChange=(e)=>{
               placeholder="search for cars"
               onChange={handleInputChange}
             />
-            <TuneIcon className="mr-2"/>
+            <TuneIcon className="mr-2" />
           </div>
         </div>
 
@@ -47,6 +81,9 @@ const handleInputChange=(e)=>{
             className="h-8 w-8 border border-gray-300 rounded-full p-1 "
           />
           <img src={profileImg} alt="Profile" className="h-8 w-8 border-none" />
+          <Button onClick={handleLogout} variant="contained" endIcon={<LogoutIcon />}>
+            Logout
+          </Button>
         </div>
       </nav>
     </header>

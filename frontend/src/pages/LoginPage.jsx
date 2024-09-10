@@ -6,8 +6,6 @@ import {
   Button,
   Typography,
   Paper,
-  FormControl,
-  colors,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
