@@ -41,6 +41,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
@@ -234,3 +235,4 @@ AWS_DEFAULT_ACL = None # Recommended for security
 # AWS_QUERYSTRING_AUTH = False
 
 
+port = int(os.environ.get("PORT", 10000))
