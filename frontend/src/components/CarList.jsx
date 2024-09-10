@@ -4,7 +4,7 @@ import { fetchCars } from '../redux/cars/carSlice';
 
 const baseUrl = "http://localhost:8000/media/";
 
-const CarList = ({ onRentClick }) => {
+const CarList = ({searchTerm, onRentClick }) => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
 
@@ -26,9 +26,16 @@ const CarList = ({ onRentClick }) => {
     return <div>No cars available</div>;
   }
 
+  // Filter cars based on searchTerm
+  const filteredCars = cars.filter((car) =>
+    car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    car.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {cars.map((car) => (
+      {filteredCars.map((car) => (
         <CarCard key={car.id} car={car} onRentClick={onRentClick} />
       ))}
     </div>

@@ -7,6 +7,7 @@ import CarList from '../components/CarList.jsx';
 
 const Homepage = () => {
   const [selectedCar, setSelectedCar] = useState(null);
+  const [searchTerm,setSearchTerm]=useState('')
 
   const handleRentClick = (car) => {
     setSelectedCar(car);
@@ -16,10 +17,14 @@ const Homepage = () => {
     setSelectedCar(null);
   };
 
+  const handleSearch=(term)=>{
+    setSearchTerm(term)
+  }
+
   return (
     <>
-      <Header />
-      {selectedCar ? (
+      <Header onSearch={handleSearch} />
+      {selectedCar ? ( <>
         <div className="p-4">
           <button
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mb-4"
@@ -40,17 +45,17 @@ const Homepage = () => {
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                 onClick={() => console.log(`You have rented ${selectedCar.name}`)}
-              >
-                Rent Now
-              </button>
+              >Next</button>
             </div>
           </div>
         </div>
+        <CarList searchTerm={searchTerm}onRentClick={handleRentClick} />
+        </>
       ) : (
         <>
           <HeroCards />
           <Destination />
-          <CarList onRentClick={handleRentClick} />
+          <CarList searchTerm={searchTerm} onRentClick={handleRentClick} />
         </>
       )}
       <Footer />
