@@ -34,16 +34,19 @@ const Header = ({ onSearch }) => {
 
       if (response.status === 200) {
         // Clear any client-side data (like tokens)
-        localStorage.removeItem("authToken");
-        logout(); //setting the is authenticated to the false/Null
+        //setting the is authenticated to the false/Null
         // Show success message
         setSnackbarMessage("Logout successful!");
         setSnackbarSeverity("success");
         setSnackbarOpen(true);
         // Optionally redirect to login or home page
         setTimeout(() => {
+          login()
+        }, 1000);
+        setTimeout(() => {
           navigate("/login");
         }, 1000);
+        
       } else {
         console.error("Failed to log out:", response.data);
         setSnackbarMessage("Logout failed. Please try again.");
