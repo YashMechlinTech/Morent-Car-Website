@@ -6,6 +6,8 @@ import {
   Button,
   Typography,
   Paper,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -14,6 +16,9 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const { login } = useAuth();
   const handleLogin = async (e) => {
@@ -32,15 +37,26 @@ const LoginPage = () => {
         }
       );
       login(); //setting the isAuthenticated to true
-      navigate("/");
-      alert(response.data.message);
+      setSnackbarMessage(response.data.message);
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
-      alert(error.response?.data?.error || "Login failed");
+      setSnackbarMessage(error.response?.data?.error || "Login failed");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
     }
   };
   const handleSignUp = () => {
     navigate("/register");
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -143,6 +159,15 @@ const LoginPage = () => {
           </Grid>
         </form>
       </Paper>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
