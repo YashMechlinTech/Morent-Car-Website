@@ -7,6 +7,7 @@ import CarList from '../components/CarList.jsx';
 
 const Homepage = () => {
   const [selectedCar, setSelectedCar] = useState(null);
+  const [searchTerm,setSearchTerm]=useState('')
 
   const handleRentClick = (car) => {
     setSelectedCar(car);
@@ -16,9 +17,13 @@ const Homepage = () => {
     setSelectedCar(null);
   };
 
+  const handleSearch=(term)=>{
+    setSearchTerm(term)
+  }
+
   return (
     <>
-      <Header />
+      <Header onSearch={handleSearch} />
       {selectedCar ? ( <>
         <div className="p-4">
           <button
@@ -44,13 +49,13 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-        <CarList onRentClick={handleRentClick} />
+        <CarList searchTerm={searchTerm}onRentClick={handleRentClick} />
         </>
       ) : (
         <>
           <HeroCards />
           <Destination />
-          <CarList onRentClick={handleRentClick} />
+          <CarList searchTerm={searchTerm} onRentClick={handleRentClick} />
         </>
       )}
       <Footer />

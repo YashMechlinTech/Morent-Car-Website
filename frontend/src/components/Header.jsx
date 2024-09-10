@@ -5,7 +5,10 @@ import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
-const Header = () => {
+const Header = ({onSearch}) => {
+const handleInputChange=(e)=>{
+  onSearch(e.target.value)
+}
 
   return (
     <header>
@@ -20,9 +23,8 @@ const Header = () => {
               className="focus:outline-none"
               style={{ border: "none", borderColor: "white", width: "30vw" }}
               type="text"
-              name=""
-              id=""
               placeholder="search for cars"
+              onChange={handleInputChange}
             />
             <TuneIcon className="mr-2"/>
           </div>
