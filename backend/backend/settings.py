@@ -233,9 +233,4 @@ AWS_DEFAULT_ACL = None # Recommended for security
 # Optional settings
 # AWS_QUERYSTRING_AUTH = False
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
