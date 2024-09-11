@@ -24,6 +24,12 @@ class Car(models.Model):
         ("manual", "Manual"),
         ("automatic", "Automatic"),
     ]
+    LOCATIONS = [
+        ("New York", "New York"),
+        ("Los Angeles", "Los Angeles"),
+        ("Chicago", "Chicago"),
+        ("San francisco","San Francisco")
+    ]
 
     name = models.CharField(max_length=100)
     image_url = models.FileField(upload_to="carimages/")
@@ -41,6 +47,8 @@ class Car(models.Model):
     gasoline_capacity = models.DecimalField(
         max_digits=5, decimal_places=1, null=True, blank=True, default=70.0
     )
+
+    location=models.CharField(null=True,choices=LOCATIONS,max_length=15,blank=True,default="New York")
 
     def __str__(self):
         return self.name

@@ -29,7 +29,7 @@ const CarList = ({searchTerm, onRentClick }) => {
   // Filter cars based on searchTerm
   const filteredCars = cars.filter((car) =>
     car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    car.description.toLowerCase().includes(searchTerm.toLowerCase())
+    car.description.toLowerCase().includes(searchTerm.toLowerCase())|| car.location.toLowerCase().includes(searchTerm.toLowerCase())||car.car_type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
 
