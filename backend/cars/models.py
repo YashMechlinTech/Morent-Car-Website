@@ -1,16 +1,15 @@
 from django.db import models
 
-from django.db import models
 
 
 class Car(models.Model):
     CAR_TYPE_CHOICES = [
-        ("sport", "Sport"),
-        ("suv", "SUV"),
-        ("mpv", "MPV"),
-        ("sedan", "Sedan"),
-        ("coupe", "Coupe"),
-        ("hatchback", "Hatchback"),
+        ("Sport", "Sport"),
+        ("SUV", "SUV"),
+        ("MPV", "MPV"),
+        ("Sedan", "Sedan"),
+        ("Coupe", "Coupe"),
+        ("Hatchback", "Hatchback"),
     ]
 
     CAPACITY_CHOICES = [
@@ -21,8 +20,8 @@ class Car(models.Model):
     ]
 
     STEERING_CHOICES = [
-        ("manual", "Manual"),
-        ("automatic", "Automatic"),
+        ("Manual", "Manual"),
+        ("Automatic", "Automatic"),
     ]
     LOCATIONS = [
         ("New York", "New York"),

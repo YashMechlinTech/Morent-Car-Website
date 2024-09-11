@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCars } from '../redux/cars/carSlice';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 
 const baseUrl = "http://localhost:8000/media/";
 
@@ -52,6 +55,17 @@ const CarCard = React.memo(({ car, onRentClick }) => {
       />
       <h2 className="text-lg font-bold mb-2">{car.name}</h2>
       <p className="text-gray-600 mb-4">{car.description}</p>
+      <div className='flex justify-evenlyitems-center'>
+       <div><LocalGasStationIcon sx={{color:'green'}}/> <span style={{fontWeight:'bold',color:'GrayText'}}>{car.gasoline_capacity}L</span></div>
+
+       <div><BuildCircleOutlinedIcon sx={{color:'green'}}/> <span style={{fontWeight:'bold',color:'GrayText'}}>{car.steering}</span></div>
+
+       <div><PeopleAltOutlinedIcon sx={{color:'green'}}/> <span style={{fontWeight:'Bold',color:'GrayText'}}>{car.capacity}</span></div>
+
+
+      </div>
+
+
       <div className="flex justify-between items-center">
         <span className="text-lg font-bold">${car.price}/day</span>
         <button

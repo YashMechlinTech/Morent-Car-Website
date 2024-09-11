@@ -20,7 +20,7 @@ function App() {
               }
             />
 
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<Homepage />} />
             <Route path="/register" element={<RegistrationPage />} />
           </Routes>
         </BrowserRouter>
