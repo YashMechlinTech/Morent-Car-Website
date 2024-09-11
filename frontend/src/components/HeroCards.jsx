@@ -5,7 +5,7 @@ import { Grid, Typography, Button, Card, CardContent } from "@mui/material";
 
 const HeroCards = () => {
   return (
-    <Grid container spacing={2} style={{ margin: '16px' }}>
+    <Grid container spacing={2}>
       {/* First Card */}
       <Grid item xs={12} md={6}>
         <Card
@@ -48,10 +48,10 @@ const HeroCards = () => {
               sx={{
                 backgroundColor: 'hsl(225, 80%, 56%)',
                 color: 'white',
-                padding: '8px 16px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 marginTop: 'auto', 
-                fontSize:'2vh',   // Ensure button is at the bottom
+                fontSize:'2vh',  
               }}
             >
               Rental Car
@@ -63,8 +63,8 @@ const HeroCards = () => {
             style={{
               position: 'absolute',
               bottom: '0',
-              left: '0',
-              width: '100%',
+              left: '20vh',
+              width: '80%',
               height: 'auto',
               objectFit: 'cover',  // Ensure image covers the area without distortion
             }}
@@ -114,7 +114,7 @@ const HeroCards = () => {
               sx={{
                 backgroundColor: 'rgb(84, 166, 255)',
                 color: 'white',
-                padding: '8px 16px',
+                padding: '5px 10px ',
                 borderRadius: '20px',
                 marginTop: 'auto', 
                 fontSize:'2vh', // Ensure button is at the bottom
@@ -128,9 +128,9 @@ const HeroCards = () => {
             alt="Lamborghini"
             style={{
               position: 'absolute',
-              bottom: '0',
-              right: '5vw',
-              width: '80%',
+              bottom: '2vh',
+              right: '4.5vw',
+              width: '70%',
               height: 'auto',
               objectFit: 'cover',  // Ensure image covers the area without distortion
             }}
