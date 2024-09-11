@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
-import ssl
-ssl._create_default_https_context=ssl._create_unverified_context
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -12,7 +11,7 @@ SECRET_KEY = 'django-insecure-#$rhiv*4%7!d)e##m^$r&j=gbp3jjk!wb@thdd%q5+vki#t7^(
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1",".onrender.com","backend.onrender.com"]
 
 
 # Application definition
@@ -41,6 +40,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
@@ -233,9 +233,5 @@ AWS_DEFAULT_ACL = None # Recommended for security
 # Optional settings
 # AWS_QUERYSTRING_AUTH = False
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
+port = int(os.environ.get("PORT", 10000))
