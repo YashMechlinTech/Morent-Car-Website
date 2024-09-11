@@ -6,7 +6,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 const baseUrl = "http://localhost:8000/media/";
-
+import Paper from '@mui/material/Paper';
 const CarList = ({searchTerm, onRentClick }) => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
@@ -53,26 +53,40 @@ const CarList = ({searchTerm, onRentClick }) => {
 
 const CarCard = React.memo(({ car, onRentClick }) => {
   return (
-    <div className="rounded-lg shadow-2xl p-4 bg-white">
-      <div style={{display:'flex', justifyContent:'space-between'}}> <h2 className="text-lg font-bold mb-2">{car.name}</h2>
-      <FavoriteBorderOutlinedIcon/></div>
-       
+    <Paper elevation={2} className="rounded-full p-4 bg-white"> {/* Replace shadow-2xl with Paper and elevation */}
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h2 className="text-lg font-bold mb-2">{car.name}</h2>
+        <FavoriteBorderOutlinedIcon />
+      </div>
+
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
         className="w-full h-40 rounded-lg object-contain mb-4"
       />
-     
-      <div className='flex justify-evenlyitems-center'>
-       <div><LocalGasStationIcon sx={{color:'green'}}/> <span style={{fontWeight:'bold',color:'GrayText'}}>{car.gasoline_capacity}L</span></div>
 
-       <div><BuildCircleOutlinedIcon sx={{color:'green'}}/> <span style={{fontWeight:'bold',color:'GrayText'}}>{car.steering}</span></div>
+      <div className="flex justify-between items-center">
+        <div>
+          <LocalGasStationIcon sx={{ color: 'green' }} />
+          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+            {car.gasoline_capacity}L
+          </span>
+        </div>
 
-       <div><PeopleAltOutlinedIcon sx={{color:'green'}}/> <span style={{fontWeight:'Bold',color:'GrayText'}}>{car.capacity}</span></div>
+        <div>
+          <BuildCircleOutlinedIcon sx={{ color: 'green' }} />
+          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+            {car.steering}
+          </span>
+        </div>
 
-
+        <div>
+          <PeopleAltOutlinedIcon sx={{ color: 'green' }} />
+          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+            {car.capacity}
+          </span>
+        </div>
       </div>
-
 
       <div className="flex justify-between items-center">
         <span className="text-lg font-bold">${car.price}/day</span>
@@ -83,8 +97,7 @@ const CarCard = React.memo(({ car, onRentClick }) => {
           Rent Now
         </button>
       </div>
-    </div>
+    </Paper>
   );
 });
-
 export default CarList;
