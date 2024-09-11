@@ -4,7 +4,7 @@ import { fetchCars } from '../redux/cars/carSlice';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
-
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 const baseUrl = "http://localhost:8000/media/";
 
 const CarList = ({searchTerm, onRentClick }) => {
@@ -36,25 +36,33 @@ const CarList = ({searchTerm, onRentClick }) => {
   );
 
 
-  return (
+  return (<>
+<div  className='w-full flex p-4 font-medium justify-between'>
+<div className='text-gray-400 font-normal'>Popular car</div>
+<div className='text-blue-500'>View All </div>
+</div>
+
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {filteredCars.map((car) => (
         <CarCard key={car.id} car={car} onRentClick={onRentClick} />
       ))}
     </div>
+    </>
   );
 };
 
 const CarCard = React.memo(({ car, onRentClick }) => {
   return (
-    <div className="rounded-lg shadow-md p-4 bg-white">
+    <div className="rounded-lg shadow-2xl p-4 bg-white">
+      <div style={{display:'flex', justifyContent:'space-between'}}> <h2 className="text-lg font-bold mb-2">{car.name}</h2>
+      <FavoriteBorderOutlinedIcon/></div>
+       
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
         className="w-full h-40 rounded-lg object-contain mb-4"
       />
-      <h2 className="text-lg font-bold mb-2">{car.name}</h2>
-      <p className="text-gray-600 mb-4">{car.description}</p>
+     
       <div className='flex justify-evenlyitems-center'>
        <div><LocalGasStationIcon sx={{color:'green'}}/> <span style={{fontWeight:'bold',color:'GrayText'}}>{car.gasoline_capacity}L</span></div>
 
