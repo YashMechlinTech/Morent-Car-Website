@@ -1,16 +1,15 @@
 from django.db import models
 
-from django.db import models
 
 
 class Car(models.Model):
     CAR_TYPE_CHOICES = [
-        ("sport", "Sport"),
-        ("suv", "SUV"),
-        ("mpv", "MPV"),
-        ("sedan", "Sedan"),
-        ("coupe", "Coupe"),
-        ("hatchback", "Hatchback"),
+        ("Sport", "Sport"),
+        ("SUV", "SUV"),
+        ("MPV", "MPV"),
+        ("Sedan", "Sedan"),
+        ("Coupe", "Coupe"),
+        ("Hatchback", "Hatchback"),
     ]
 
     CAPACITY_CHOICES = [
@@ -21,8 +20,14 @@ class Car(models.Model):
     ]
 
     STEERING_CHOICES = [
-        ("manual", "Manual"),
-        ("automatic", "Automatic"),
+        ("Manual", "Manual"),
+        ("Automatic", "Automatic"),
+    ]
+    LOCATIONS = [
+        ("New York", "New York"),
+        ("Los Angeles", "Los Angeles"),
+        ("Chicago", "Chicago"),
+        ("San francisco","San Francisco")
     ]
 
     name = models.CharField(max_length=100)
@@ -41,6 +46,8 @@ class Car(models.Model):
     gasoline_capacity = models.DecimalField(
         max_digits=5, decimal_places=1, null=True, blank=True, default=70.0
     )
+
+    location=models.CharField(null=True,choices=LOCATIONS,max_length=15,blank=True,default="New York")
 
     def __str__(self):
         return self.name

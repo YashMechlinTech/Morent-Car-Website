@@ -35,9 +35,9 @@ const Destination = () => {
   };
 
   return (
-    <Grid container spacing={2}alignItems="center" justifyContent="center" sx={{justifyContent:'space-around',marginRight:'16px'}}>
+    <Grid container spacing={1}alignItems="center"    justifyContent="center" sx={{justifyContent:'space-around',marginRight:'16px'}}>
       {/* Pickup Section */}
-      <Grid item xs={12} md={2} lg={1} >
+      <Grid item xs={12} md={2} lg={1}  >
         <Typography variant="body1"> Location</Typography>
         <TextField 
         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
@@ -47,7 +47,7 @@ const Destination = () => {
           fullWidth
           margin="normal"
           variant="outlined"
-         
+      
         >
           <MenuItem value="">Select your city</MenuItem>
           <MenuItem value="New York">New York</MenuItem>
