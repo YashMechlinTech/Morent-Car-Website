@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Grid, TextField, MenuItem, Typography, IconButton } from "@mui/material";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 const Destination = () => {
   const [pickupLocation, setPickupLocation] = useState("");
