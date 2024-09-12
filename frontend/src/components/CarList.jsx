@@ -7,7 +7,7 @@ import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 const baseUrl = "http://localhost:8000/media/";
 import Paper from '@mui/material/Paper';
-const CarList = ({searchTerm, onRentClick }) => {
+const CarList = ({searchTerm, onRentClick ,pickupLocation}) => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
 
@@ -29,8 +29,12 @@ const CarList = ({searchTerm, onRentClick }) => {
     return <div>No cars available</div>;
   }
 
+  const locationFilteredCars = pickupLocation
+    ? cars.filter((car) => car.location.toLowerCase() === pickupLocation.toLowerCase())
+    : cars;
+
   // Filtering the cars  cars based on searchTerm
-  const filteredCars = cars.filter((car) =>
+  const filteredCars = locationFilteredCars.filter((car) =>
     car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     car.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -51,7 +55,7 @@ const CarList = ({searchTerm, onRentClick }) => {
   );
 };
 
-const CarCard = React.memo(({ car, onRentClick }) => {
+const CarCard = React.memo(({ car, onRentClick ,pickupLocation,dropoffLocation}) => {
   return (
     <Paper elevation={2} className="rounded-full p-4 bg-white"> {/* Replace shadow-2xl with Paper and elevation */}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>

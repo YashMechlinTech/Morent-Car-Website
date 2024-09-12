@@ -10,16 +10,18 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import NavigationOutlinedIcon from "@mui/icons-material/NavigationOutlined";
 
-const Filter = () => {
+const Filter = ({onPickupLocationChange,onDropoffLocationChange}) => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
 
   const handlePickupLocationChange = (event) => {
     setPickupLocation(event.target.value);
+    onPickupLocationChange(event.target.value);
   };
 
   const handleDropoffLocationChange = (event) => {
     setDropoffLocation(event.target.value);
+    onDropoffLocationChange(event.target.value);
   };
 
   const handleswapfunctionality = () => {
@@ -44,13 +46,14 @@ const Filter = () => {
               </InputAdornment>
             ),
           }}
-          sx={{ "& .MuiOutlinedInput-root": { borderRadius: "16px" },
-          '& .MuiSelect-select': {
-            fontFamily: 'monospace', // Custom font
-            fontSize: '18px', // Custom font size
-            fontWeight: 'bold', // Custom font weight
-          },
-         }}
+          sx={{
+            "& .MuiOutlinedInput-root": { borderRadius: "16px" },
+            "& .MuiSelect-select": {
+              fontFamily: "monospace", // Custom font
+              fontSize: "18px", // Custom font size
+              fontWeight: "bold", // Custom font weight
+            },
+          }}
           select
           value={pickupLocation}
           onChange={handlePickupLocationChange}
@@ -90,14 +93,14 @@ const Filter = () => {
               </InputAdornment>
             ),
           }}
-          sx={{ "& .MuiOutlinedInput-root": { borderRadius: "16px",
-          },
-          '& .MuiSelect-select': {
-            fontFamily: 'monospace', // Custom font
-            fontSize: '18px', // Custom font size
-            fontWeight: 'bold', // Custom font weight
-          },
-         }}
+          sx={{
+            "& .MuiOutlinedInput-root": { borderRadius: "16px" },
+            "& .MuiSelect-select": {
+              fontFamily: "monospace", // Custom font
+              fontSize: "18px", // Custom font size
+              fontWeight: "bold", // Custom font weight
+            },
+          }}
           select
           value={dropoffLocation}
           onChange={handleDropoffLocationChange}
