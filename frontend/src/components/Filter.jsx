@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, TextField, MenuItem, Typography, IconButton } from "@mui/material";
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-const Destination = () => {
+const Filter = () => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
 
@@ -87,4 +87,4 @@ const handleswapfunctionality=()=>{
   );
 };
 
-export default Destination;
+export default Filter;

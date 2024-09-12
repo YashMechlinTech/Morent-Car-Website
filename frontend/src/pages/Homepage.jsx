@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import HeroCards from "../components/HeroCards.jsx";
-import Destination from "../components/Destination.jsx";
 import CarList from "../components/CarList.jsx";
 import FavoriteBorderOutlined from "@mui/icons-material/FavoriteBorderOutlined.js";
 import RatingComponent from "../components/RatingComponent.jsx";
 import ReviewSection from "../components/ReviewComponents.jsx";
 import { useNavigate } from "react-router-dom";
+import Filter from "../components/Filter.jsx";
 
 
 const Homepage = () => {
@@ -100,7 +100,7 @@ const Homepage = () => {
       ) : (
         <>
           <HeroCards />
-          <Destination />
+          <Filter />
           <CarList searchTerm={searchTerm} onRentClick={handleRentClick} />
         </>
       )}
