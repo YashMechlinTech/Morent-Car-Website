@@ -50,5 +50,7 @@ class Car(models.Model):
         null=True, choices=LOCATIONS, max_length=15, blank=True, default="New York"
     )
 
+    isFavourite=models.BooleanField(default=False)
+
     def __str__(self):
         return self.name

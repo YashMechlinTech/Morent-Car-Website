@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCars } from '../redux/cars/carSlice';
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCars } from "../redux/cars/carSlice";
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import BuildCircleOutlinedIcon from "@mui/icons-material/BuildCircleOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 const baseUrl = "http://localhost:8000/media/";
-import Paper from '@mui/material/Paper';
-const CarList = ({searchTerm, onRentClick ,pickupLocation,dropoffLocation}) => {
-  console.log('CarList props:', { pickupLocation, dropoffLocation });
+import Paper from "@mui/material/Paper";
+import axios from "axios";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
+const CarList = ({ searchTerm, onRentClick, pickupLocation }) => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
 
@@ -32,68 +33,88 @@ const CarList = ({searchTerm, onRentClick ,pickupLocation,dropoffLocation}) => {
   }
 
   const locationFilteredCars = pickupLocation
-    ? cars.filter((car) => car.location.toLowerCase() === pickupLocation.toLowerCase())
+    ? cars.filter(
+        (car) => car.location.toLowerCase() === pickupLocation.toLowerCase()
+      )
     : cars;
 
   // Filtering the cars  cars based on searchTerm
-  const filteredCars = locationFilteredCars.filter((car) =>
-    car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    car.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCars = locationFilteredCars.filter(
+    (car) =>
+      car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      car.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  return (
+    <>
+      <div className="w-full flex  p-4 font-medium justify-between">
+        <div className="text-gray-400 font-normal">Popular car</div>
+        <div className="text-blue-500">View All </div>
+      </div>
 
-  return (<>
-<div  className='w-full flex  p-4 font-medium justify-between'>
-<div className='text-gray-400 font-normal'>Popular car</div>
-<div className='text-blue-500'>View All </div>
-</div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {filteredCars.map((car) => (
-        <CarCard key={car.id} car={car} onRentClick={onRentClick} />
-      ))}
-    </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {filteredCars.map((car) => (
+          <CarCard key={car.id} car={car} onRentClick={onRentClick} />
+        ))}
+      </div>
     </>
   );
 };
 
 const CarCard = React.memo(({ car, onRentClick }) => {
-  return (
-    <Paper elevation={2} className="rounded-full p-4 bg-white"> {/* Replace shadow-2xl with Paper and elevation */}
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h2 className="text-lg font-bold mb-2">{car.name}</h2>
-        <FavoriteBorderOutlinedIcon />
-      </div>
+  const [isFavorited, setIsFavorited] = useState(car.isFavourite);
+  const handleFavoriteClick = useCallback(async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/cars/${car.id}/toggle_favorite/`
+      );
+      setIsFavorited(response.data.isFavourite);
+    } catch (error) {
+      console.error("Error toggling favorite: ", error);
+    }
+  }, [car.id]);
 
+  return (
+    <Paper elevation={2} className="rounded-full p-4 bg-white">
+      {" "}
+      {/* Replace shadow-2xl with Paper and elevation */}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h2 className="text-lg font-bold mb-2">{car.name}</h2>
+     <div onClick={handleFavoriteClick}>
+     {isFavorited ? (
+          <FavoriteIcon sx={{color:'red'}} />
+        ) : (
+          <FavoriteBorderOutlinedIcon />
+        )}
+     </div>
+      </div>
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
         className="w-full h-40 rounded-lg object-contain mb-4"
       />
-
       <div className="flex justify-between items-center">
         <div>
-          <LocalGasStationIcon sx={{ color: 'green' }} />
-          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+          <LocalGasStationIcon sx={{ color: "green" }} />
+          <span style={{ fontWeight: "bold", color: "GrayText" }}>
             {car.gasoline_capacity}L
           </span>
         </div>
 
         <div>
-          <BuildCircleOutlinedIcon sx={{ color: 'green' }} />
-          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+          <BuildCircleOutlinedIcon sx={{ color: "green" }} />
+          <span style={{ fontWeight: "bold", color: "GrayText" }}>
             {car.steering}
           </span>
         </div>
 
         <div>
-          <PeopleAltOutlinedIcon sx={{ color: 'green' }} />
-          <span style={{ fontWeight: 'bold', color: 'GrayText' }}>
+          <PeopleAltOutlinedIcon sx={{ color: "green" }} />
+          <span style={{ fontWeight: "bold", color: "GrayText" }}>
             {car.capacity}
           </span>
         </div>
       </div>
-
       <div className="flex justify-between items-center">
         <span className="text-lg font-bold">${car.price}/day</span>
         <button
