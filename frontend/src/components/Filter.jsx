@@ -10,7 +10,7 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import NavigationOutlinedIcon from "@mui/icons-material/NavigationOutlined";
 
-const Filter = ({onPickupLocationChange,onDropoffLocationChange}) => {
+const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
 
@@ -25,7 +25,8 @@ const Filter = ({onPickupLocationChange,onDropoffLocationChange}) => {
   };
 
   const handleswapfunctionality = () => {
-    console.log("button is clicked. ");
+    setPickupLocation(dropoffLocation);
+    setDropoffLocation(pickupLocation);
   };
 
   return (
