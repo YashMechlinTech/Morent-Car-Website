@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import notificationImg from "../assets/bell.svg";
 import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, Alert, Snackbar, TextField } from "@mui/material";
+import {
+  Button,
+  Alert,
+  Snackbar,
+  TextField,
+  Modal,
+  Box,
+  Typography,
+} from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +23,9 @@ const Header = ({ onSearch }) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [modalOpen, setModalOpen] = useState(false); //
+  const [favoriteCars, setFavoriteCars] = useState([]);
+
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     onSearch(e.target.value);
@@ -41,12 +52,11 @@ const Header = ({ onSearch }) => {
         setSnackbarOpen(true);
         // Optionally redirect to login or home page
         setTimeout(() => {
-          logout()
+          logout();
         }, 1000);
         setTimeout(() => {
           navigate("/login");
         }, 1000);
-        
       } else {
         console.error("Failed to log out:", response.data);
         setSnackbarMessage("Logout failed. Please try again.");
@@ -64,6 +74,25 @@ const Header = ({ onSearch }) => {
     setSnackbarOpen(false);
   };
 
+  const handleFavoriteClick = async () => {
+    // Open the modal
+    setModalOpen(true);
+
+    // Fetch the favorite cars from the backend
+    try {
+      const response = await axios.get("http://localhost:8000/cars/favorites/");
+      if (response.status === 200) {
+        setFavoriteCars(response.data); // Set the favorite cars
+      }
+    } catch (error) {
+      console.error("Error fetching favorite cars:", error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <header>
       <nav className="flex flex-wrap items-center justify-between p-4   bg-white">
@@ -77,7 +106,7 @@ const Header = ({ onSearch }) => {
               className="focus:outline-none"
               style={{ border: "none", borderColor: "white", width: "30vw" }}
               type="text"
-              placeholder= "Search for cars...  "
+              placeholder="Search for cars...  "
               onChange={handleInputChange}
             />
             <TuneIcon className="mr-2" />
@@ -86,13 +115,13 @@ const Header = ({ onSearch }) => {
 
         <div className="flex items-center gap-4 mt-4 md:mt-0">
           <FavoriteBorderIcon
-          sx={{
-            borderColor:'rgb(209, 213, 219)',
-            borderRadius:'50%',
-            borderWidth:'1px',
-            fontSize:'30px',
-            padding:'3px'
-          }}
+            sx={{
+              borderColor: "rgb(209, 213, 219)",
+              borderRadius: "50%",
+              borderWidth: "1px",
+              fontSize: "30px",
+              padding: "3px",
+            }}
           />
           <img
             src={notificationImg}
@@ -109,11 +138,9 @@ const Header = ({ onSearch }) => {
             onClick={handleLogout}
             variant="contained"
             endIcon={<LogoutIcon />}
-            sx={
-              {
-                   fontFamily:'monospace',
-              }
-            }
+            sx={{
+              fontFamily: "monospace",
+            }}
           >
             Logout
           </Button>

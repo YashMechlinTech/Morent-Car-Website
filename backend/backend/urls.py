@@ -20,7 +20,7 @@ urlpatterns = [
         views.toggle_favorite,
         name="toggle_favorite",
     ),
-    path("cars/favorites", views.get_favorites, name="get-favorites"),
+    path("cars/favorites/", views.get_favorites, name="get-favorites"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

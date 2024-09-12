@@ -22,7 +22,6 @@ def toggle_favorite(request,car_id):
     serializer=CarSerializer(car)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def get_favorites(request):
     favorite_cars=Car.objects.filter(isFavourite=True)
