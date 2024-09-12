@@ -38,7 +38,7 @@ const HeroCards = () => {
               sx={{
                 color: "white",
                 fontFamily:'monospace',
-                fontSize: "2vh", // Adjusted font size for better scaling
+                fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
             >
@@ -107,7 +107,7 @@ const HeroCards = () => {
               sx={{
                 color: "white",
                 fontFamily:'monospace',
-                fontSize: "2vh", // Adjusted font size for better scaling
+                fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
             >
@@ -135,7 +135,7 @@ const HeroCards = () => {
             style={{
               position: "absolute",
               bottom: "2vh",
-              right: "4.5vw",
+              right: "1.5vw",
               width: "70%",
               height: "auto",
               objectFit: "cover", // Ensure image covers the area without distortion

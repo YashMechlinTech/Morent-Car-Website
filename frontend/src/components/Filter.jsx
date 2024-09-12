@@ -1,45 +1,56 @@
 import React, { useState } from "react";
-import { Grid, TextField, MenuItem, Typography, IconButton } from "@mui/material";
-import SwapVertIcon from '@mui/icons-material/SwapVert';
+import {
+  Grid,
+  TextField,
+  MenuItem,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import SwapVertIcon from "@mui/icons-material/SwapVert";
+import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
+import NavigationOutlinedIcon from "@mui/icons-material/NavigationOutlined";
+
 const Filter = () => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
 
-
   const handlePickupLocationChange = (event) => {
     setPickupLocation(event.target.value);
-  };
-
-  const handlePickupDateChange = (event) => {
-    setPickupDate(event.target.value);
-  };
-
-  const handlePickupTimeChange = (event) => {
-    setPickupTime(event.target.value);
   };
 
   const handleDropoffLocationChange = (event) => {
     setDropoffLocation(event.target.value);
   };
 
-  const handleDropoffDateChange = (event) => {
-    setDropoffDate(event.target.value);
+  const handleswapfunctionality = () => {
+    console.log("button is clicked. ");
   };
-
-  const handleDropoffTimeChange = (event) => {
-    setDropoffTime(event.target.value);
-  };
-
-const handleswapfunctionality=()=>{
- console.log('button is clicked. ')
-}
 
   return (
-    <Grid container spacing={1} alignItems="center"     justifyContent="center" sx={{justifyContent:'space-around',marginRight:'16px'}}>
+    <Grid
+      container
+      spacing={1}
+      alignItems="center"
+      justifyContent="center"
+      sx={{ justifyContent: "space-around", marginRight: "16px" }}
+    >
       {/* Pickup Section */}
-      <Grid item xs={12} md={4} lg={5}  >
-        <TextField 
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
+      <Grid item xs={12} md={4} lg={5}>
+        <TextField
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <NavigationOutlinedIcon />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ "& .MuiOutlinedInput-root": { borderRadius: "16px" },
+          '& .MuiSelect-select': {
+            fontFamily: 'monospace', // Custom font
+            fontSize: '18px', // Custom font size
+            fontWeight: 'bold', // Custom font weight
+          },
+         }}
           select
           value={pickupLocation}
           onChange={handlePickupLocationChange}
@@ -47,7 +58,6 @@ const handleswapfunctionality=()=>{
           margin="normal"
           variant="outlined"
           label="Pick Up Location"
-      
         >
           <MenuItem value="">Select your city</MenuItem>
           <MenuItem value="New York">New York</MenuItem>
@@ -55,19 +65,39 @@ const handleswapfunctionality=()=>{
           <MenuItem value="Chicago">Chicago</MenuItem>
         </TextField>
       </Grid>
- 
 
       {/* Separator */}
-      <Grid item xs={12} md={1}  container justifyContent="center" alignItems="center">
+      <Grid
+        item
+        xs={12}
+        md={1}
+        container
+        justifyContent="center"
+        alignItems="center"
+      >
         <IconButton onClick={handleswapfunctionality}>
-         <SwapVertIcon  color="primary"fontSize="large"  />
+          <SwapVertIcon color="primary" fontSize="large" />
         </IconButton>
       </Grid>
 
       {/* Dropoff Section */}
       <Grid item xs={12} md={4} lg={5}>
         <TextField
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PushPinOutlinedIcon />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ "& .MuiOutlinedInput-root": { borderRadius: "16px",
+          },
+          '& .MuiSelect-select': {
+            fontFamily: 'monospace', // Custom font
+            fontSize: '18px', // Custom font size
+            fontWeight: 'bold', // Custom font weight
+          },
+         }}
           select
           value={dropoffLocation}
           onChange={handleDropoffLocationChange}
@@ -82,7 +112,6 @@ const handleswapfunctionality=()=>{
           <MenuItem value="Chicago">Chicago</MenuItem>
         </TextField>
       </Grid>
-     
     </Grid>
   );
 };
