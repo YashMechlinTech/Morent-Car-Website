@@ -15,18 +15,22 @@ const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
   const [dropoffLocation, setDropoffLocation] = useState("");
 
   const handlePickupLocationChange = (event) => {
-    setPickupLocation(event.target.value);
-    onPickupLocationChange(event.target.value);
+    const newPickupLocation = event.target.value;
+    setPickupLocation(newPickupLocation);
+    onPickupLocationChange(newPickupLocation);
   };
 
   const handleDropoffLocationChange = (event) => {
-    setDropoffLocation(event.target.value);
-    onDropoffLocationChange(event.target.value);
+    const newDropoffLocation = event.target.value;
+    setDropoffLocation(newDropoffLocation);
+    onDropoffLocationChange(newDropoffLocation);
   };
 
   const handleswapfunctionality = () => {
     setPickupLocation(dropoffLocation);
+    onPickupLocationChange(dropoffLocation)
     setDropoffLocation(pickupLocation);
+    onDropoffLocationChange(pickupLocation)
   };
 
   return (

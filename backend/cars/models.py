@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Car(models.Model):
     CAR_TYPE_CHOICES = [
         ("Sport", "Sport"),
@@ -27,7 +26,7 @@ class Car(models.Model):
         ("New York", "New York"),
         ("Los Angeles", "Los Angeles"),
         ("Chicago", "Chicago"),
-        ("San francisco","San Francisco")
+        ("San francisco", "San Francisco"),
     ]
 
     name = models.CharField(max_length=100)
@@ -47,7 +46,11 @@ class Car(models.Model):
         max_digits=5, decimal_places=1, null=True, blank=True, default=70.0
     )
 
-    location=models.CharField(null=True,choices=LOCATIONS,max_length=15,blank=True,default="New York")
+    location = models.CharField(
+        null=True, choices=LOCATIONS, max_length=15, blank=True, default="New York"
+    )
+
+    isFavourite=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
