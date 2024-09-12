@@ -3,11 +3,8 @@ import { Grid, TextField, MenuItem, Typography, IconButton } from "@mui/material
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 const Destination = () => {
   const [pickupLocation, setPickupLocation] = useState("");
-  const [pickupDate, setPickupDate] = useState("");
-  const [pickupTime, setPickupTime] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
-  const [dropoffDate, setDropoffDate] = useState("");
-  const [dropoffTime, setDropoffTime] = useState("");
+
 
   const handlePickupLocationChange = (event) => {
     setPickupLocation(event.target.value);
@@ -33,11 +30,14 @@ const Destination = () => {
     setDropoffTime(event.target.value);
   };
 
+const handleswapfunctionality=()=>{
+ console.log('button is clicked. ')
+}
+
   return (
-    <Grid container spacing={1}alignItems="center"    justifyContent="center" sx={{justifyContent:'space-around',marginRight:'16px'}}>
+    <Grid container spacing={1} alignItems="center"     justifyContent="center" sx={{justifyContent:'space-around',marginRight:'16px'}}>
       {/* Pickup Section */}
-      <Grid item xs={12} md={2} lg={1}  >
-        <Typography variant="body1"> Location</Typography>
+      <Grid item xs={12} md={4} lg={5}  >
         <TextField 
         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
           select
@@ -46,6 +46,7 @@ const Destination = () => {
           fullWidth
           margin="normal"
           variant="outlined"
+          label="Pick Up Location"
       
         >
           <MenuItem value="">Select your city</MenuItem>
@@ -54,49 +55,24 @@ const Destination = () => {
           <MenuItem value="Chicago">Chicago</MenuItem>
         </TextField>
       </Grid>
-      <Grid item xs={12} md={2} lg={1}>
-        <Typography variant="body1">Pickup Date</Typography>
-        <TextField
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
-          type="date"
-          value={pickupDate}
-          onChange={handlePickupDateChange}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{ shrink: true }}
-        />
-      </Grid>
-      <Grid item xs={12} md={2} lg={1}>
-        <Typography variant="body1">Pickup Time</Typography>
-        <TextField
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
-          type="time"
-          value={pickupTime}
-          onChange={handlePickupTimeChange}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{ shrink: true }}
-        />
-      </Grid>
+ 
 
       {/* Separator */}
       <Grid item xs={12} md={1}  container justifyContent="center" alignItems="center">
-        <IconButton>
-         <SwapVertIcon color="primary"fontSize="large"  />
+        <IconButton onClick={handleswapfunctionality}>
+         <SwapVertIcon  color="primary"fontSize="large"  />
         </IconButton>
       </Grid>
 
       {/* Dropoff Section */}
-      <Grid item xs={12} md={2} lg={1}>
-        <Typography variant="body1"> Location</Typography>
+      <Grid item xs={12} md={4} lg={5}>
         <TextField
         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
           select
           value={dropoffLocation}
           onChange={handleDropoffLocationChange}
           fullWidth
+          label="Dropoff Location"
           margin="normal"
           variant="outlined"
         >
@@ -106,32 +82,7 @@ const Destination = () => {
           <MenuItem value="Chicago">Chicago</MenuItem>
         </TextField>
       </Grid>
-      <Grid item xs={12} md={2} lg={1}>
-        <Typography variant="body1">Dropoff Date</Typography>
-        <TextField
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
-          type="date"
-          value={dropoffDate}
-          onChange={handleDropoffDateChange}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{ shrink: true }}
-        />
-      </Grid>
-      <Grid item xs={12} md={2} lg={1}>
-        <Typography variant="body1">Dropoff Time</Typography>
-        <TextField
-        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '16px' } }} 
-          type="time"
-          value={dropoffTime}
-          onChange={handleDropoffTimeChange}
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{ shrink: true }}
-        />
-      </Grid>
+     
     </Grid>
   );
 };
