@@ -5,7 +5,7 @@ import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, Alert, Snackbar } from "@mui/material";
+import { Button, Alert, Snackbar, TextField } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ const Header = ({ onSearch }) => {
     onSearch(e.target.value);
   };
   const { logout } = useAuth();
+
   const handleLogout = async () => {
     try {
       const response = await axios.post(
@@ -40,7 +41,7 @@ const Header = ({ onSearch }) => {
         setSnackbarOpen(true);
         // Optionally redirect to login or home page
         setTimeout(() => {
-          login()
+          logout()
         }, 1000);
         setTimeout(() => {
           navigate("/login");
@@ -65,7 +66,7 @@ const Header = ({ onSearch }) => {
 
   return (
     <header>
-      <nav className="flex flex-wrap items-center justify-between p-4 bg-white">
+      <nav className="flex flex-wrap items-center justify-between p-0  m-0 bg-white">
         <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
           <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
             MORENT ™
@@ -76,7 +77,7 @@ const Header = ({ onSearch }) => {
               className="focus:outline-none"
               style={{ border: "none", borderColor: "white", width: "30vw" }}
               type="text"
-              placeholder="search for cars"
+              placeholder= "Search for cars...  "
               onChange={handleInputChange}
             />
             <TuneIcon className="mr-2" />
@@ -104,6 +105,11 @@ const Header = ({ onSearch }) => {
             onClick={handleLogout}
             variant="contained"
             endIcon={<LogoutIcon />}
+            sx={
+              {
+                   fontFamily:'monospace',
+              }
+            }
           >
             Logout
           </Button>

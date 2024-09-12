@@ -10,24 +10,25 @@ const HeroCards = () => {
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: 'rgb(84, 166, 255)',
-            borderRadius: '16px',
-            position: 'relative',
-            height: '50vh',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',  // Ensure content is spaced properly
+            backgroundColor: "rgb(84, 166, 255)",
+            borderRadius: "16px",
+            position: "relative",
+            height: "50vh",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between", // Ensure content is spaced properly
+            padding:'0px'
           }}
         >
-          <CardContent sx={{ padding: '16px' }}>
+          <CardContent sx={{ padding: "16px" }}>
             <Typography
               variant="h3"
               sx={{
-                color: 'white',
-                fontFamily: 'Plus Jakarta Sans',
-                fontSize: '6vh',  // Adjusted font size for better scaling
-                marginBottom: '16px',
+                color: "white",
+                fontFamily:'monospace',
+                fontSize: "6vh", // Adjusted font size for better scaling
+                marginBottom: "16px",
               }}
             >
               The best platform for car rental.
@@ -35,23 +36,25 @@ const HeroCards = () => {
             <Typography
               variant="body1"
               sx={{
-                color: 'white',
-                fontFamily: 'Plus Jakarta Sans',
-                fontSize: '2vh',  // Adjusted font size for better scaling
-                marginBottom: '16px',
+                color: "white",
+                fontFamily:'monospace',
+                fontSize: "3vh", // Adjusted font size for better scaling
+                marginBottom: "16px",
               }}
             >
-                 Provide cheap car rental services and safe and comfortable services.
+              Provide cheap car rental services and safe and comfortable
+              services.
             </Typography>
             <Button
               variant="contained"
               sx={{
-                backgroundColor: 'hsl(225, 80%, 56%)',
-                color: 'white',
-                padding: '5px 10px',
-                borderRadius: '20px',
-                marginTop: 'auto', 
-                fontSize:'2vh',  
+                backgroundColor: "hsl(225, 80%, 56%)",
+                color: "white",
+                padding: "5px 10px",
+                borderRadius: "20px",
+                marginTop: "auto",
+                fontSize: "2vh",
+                fontFamily:'monospace',
               }}
             >
               Rental Car
@@ -61,12 +64,12 @@ const HeroCards = () => {
             src={LamboImg}
             alt="Lamborghini"
             style={{
-              position: 'absolute',
-              bottom: '0',
-              left: '20vh',
-              width: '80%',
-              height: 'auto',
-              objectFit: 'cover',  // Ensure image covers the area without distortion
+              position: "absolute",
+              bottom: "0",
+              left: "20vh",
+              width: "80%",
+              height: "auto",
+              objectFit: "cover", // Ensure image covers the area without distortion
             }}
           />
         </Card>
@@ -76,24 +79,25 @@ const HeroCards = () => {
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: 'hsl(225, 80%, 56%)',
-            borderRadius: '16px',
-            position: 'relative',
-            height: '50vh',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',  // Ensure content is spaced properly
+            backgroundColor: "hsl(225, 80%, 56%)",
+            borderRadius: "16px",
+            position: "relative",
+            height: "50vh",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between", 
+            padding:'0px'// Ensure content is spaced properly
           }}
         >
-          <CardContent sx={{ padding: '16px' }}>
+          <CardContent sx={{ padding: "16px" }}>
             <Typography
               variant="h3"
               sx={{
-                color: 'white',
-                fontFamily: 'Plus Jakarta Sans',
-                fontSize: '6vh',  // Adjusted font size for better scaling
-                marginBottom: '16px',
+                color: "white",
+                fontFamily:'monospace',
+                fontSize: "6vh", // Adjusted font size for better scaling
+                marginBottom: "16px",
               }}
             >
               Easy way to rent a car at low price.
@@ -101,23 +105,25 @@ const HeroCards = () => {
             <Typography
               variant="body1"
               sx={{
-                color: 'white',
-                fontFamily: 'Plus Jakarta Sans',
-                fontSize: '2vh',  // Adjusted font size for better scaling
-                marginBottom: '16px',
+                color: "white",
+                fontFamily:'monospace',
+                fontSize: "3vh", // Adjusted font size for better scaling
+                marginBottom: "16px",
               }}
             >
-              Provide cheap car rental services and safe and comfortable services.
+              Provide cheap car rental services and safe and comfortable
+              services.
             </Typography>
             <Button
               variant="contained"
               sx={{
-                backgroundColor: 'rgb(84, 166, 255)',
-                color: 'white',
-                padding: '5px 10px ',
-                borderRadius: '20px',
-                marginTop: 'auto', 
-                fontSize:'2vh', // Ensure button is at the bottom
+                backgroundColor: "rgb(84, 166, 255)",
+                color: "white",
+                padding: "5px 10px ",
+                fontFamily:'monospace',
+                borderRadius: "20px",
+                marginTop: "auto",
+                fontSize: "2vh", // Ensure button is at the bottom
               }}
             >
               check Now
@@ -127,12 +133,12 @@ const HeroCards = () => {
             src={LamboTwoImg}
             alt="Lamborghini"
             style={{
-              position: 'absolute',
-              bottom: '2vh',
-              right: '4.5vw',
-              width: '70%',
-              height: 'auto',
-              objectFit: 'cover',  // Ensure image covers the area without distortion
+              position: "absolute",
+              bottom: "2vh",
+              right: "1.5vw",
+              width: "70%",
+              height: "auto",
+              objectFit: "cover", // Ensure image covers the area without distortion
             }}
           />
         </Card>
