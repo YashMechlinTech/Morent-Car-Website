@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import favouriteImg from "../assets/favourite.svg";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import notificationImg from "../assets/bell.svg";
 import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
@@ -85,10 +85,14 @@ const Header = ({ onSearch }) => {
         </div>
 
         <div className="flex items-center gap-4 mt-4 md:mt-0">
-          <img
-            src={favouriteImg}
-            alt="Favorites"
-            className="h-8 w-8 border border-gray-300 rounded-full p-1"
+          <FavoriteBorderIcon
+          sx={{
+            borderColor:'rgb(209, 213, 219)',
+            borderRadius:'50%',
+            borderWidth:'1px',
+            fontSize:'30px',
+            padding:'3px'
+          }}
           />
           <img
             src={notificationImg}
