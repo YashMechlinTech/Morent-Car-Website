@@ -5,7 +5,7 @@ import { Grid, Typography, Button, Card, CardContent } from "@mui/material";
 
 const HeroCards = () => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3} padding={2}>
       {/* First Card */}
       <Grid item xs={12} md={6}>
         <Card
@@ -18,7 +18,7 @@ const HeroCards = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between", // Ensure content is spaced properly
-            padding:'0px'
+            padding: "0px",
           }}
         >
           <CardContent sx={{ padding: "16px" }}>
@@ -26,7 +26,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-                fontFamily:'monospace',
+                fontFamily: "monospace",
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -37,7 +37,7 @@ const HeroCards = () => {
               variant="body1"
               sx={{
                 color: "white",
-                fontFamily:'monospace',
+                
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -54,7 +54,7 @@ const HeroCards = () => {
                 borderRadius: "20px",
                 marginTop: "auto",
                 fontSize: "2vh",
-                fontFamily:'monospace',
+                fontFamily: "monospace",
               }}
             >
               Rental Car
@@ -86,8 +86,8 @@ const HeroCards = () => {
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between", 
-            padding:'0px'// Ensure content is spaced properly
+            justifyContent: "space-between",
+            padding: "0px", // Ensure content is spaced properly
           }}
         >
           <CardContent sx={{ padding: "16px" }}>
@@ -95,7 +95,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-                fontFamily:'monospace',
+                fontFamily: "monospace",
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -106,7 +106,7 @@ const HeroCards = () => {
               variant="body1"
               sx={{
                 color: "white",
-                fontFamily:'monospace',
+                fontFamily: "monospace",
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -120,7 +120,7 @@ const HeroCards = () => {
                 backgroundColor: "rgb(84, 166, 255)",
                 color: "white",
                 padding: "5px 10px ",
-                fontFamily:'monospace',
+                
                 borderRadius: "20px",
                 marginTop: "auto",
                 fontSize: "2vh", // Ensure button is at the bottom
@@ -134,9 +134,9 @@ const HeroCards = () => {
             alt="Lamborghini"
             style={{
               position: "absolute",
-              bottom: "2vh",
+              bottom: "1vh",
               right: "1.5vw",
-              width: "70%",
+              width: "65%",
               height: "auto",
               objectFit: "cover", // Ensure image covers the area without distortion
             }}

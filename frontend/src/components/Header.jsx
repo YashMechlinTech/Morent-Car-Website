@@ -66,7 +66,7 @@ const Header = ({ onSearch }) => {
 
   return (
     <header>
-      <nav className="flex flex-wrap items-center justify-between p-0  m-0 bg-white">
+      <nav className="flex flex-wrap items-center justify-between p-4   bg-white">
         <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
           <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
             MORENT ™

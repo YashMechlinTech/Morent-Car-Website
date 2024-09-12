@@ -7,7 +7,9 @@ import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 const baseUrl = "http://localhost:8000/media/";
 import Paper from '@mui/material/Paper';
-const CarList = ({searchTerm, onRentClick ,pickupLocation}) => {
+const CarList = ({searchTerm, onRentClick ,pickupLocation,dropoffLocation}) => {
+  console.log('CarList props:', { pickupLocation, dropoffLocation });
+
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
 
@@ -41,7 +43,7 @@ const CarList = ({searchTerm, onRentClick ,pickupLocation}) => {
 
 
   return (<>
-<div  className='w-full flex p-4 font-medium justify-between'>
+<div  className='w-full flex  p-4 font-medium justify-between'>
 <div className='text-gray-400 font-normal'>Popular car</div>
 <div className='text-blue-500'>View All </div>
 </div>
@@ -55,7 +57,7 @@ const CarList = ({searchTerm, onRentClick ,pickupLocation}) => {
   );
 };
 
-const CarCard = React.memo(({ car, onRentClick ,pickupLocation,dropoffLocation}) => {
+const CarCard = React.memo(({ car, onRentClick }) => {
   return (
     <Paper elevation={2} className="rounded-full p-4 bg-white"> {/* Replace shadow-2xl with Paper and elevation */}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
