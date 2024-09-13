@@ -8,7 +8,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 const baseUrl = "http://localhost:8000/media/";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const CarList = ({ searchTerm, onRentClick, pickupLocation }) => {
   const dispatch = useDispatch();
@@ -79,15 +79,16 @@ const CarCard = React.memo(({ car, onRentClick }) => {
       {" "}
       {/* Replace shadow-2xl with Paper and elevation */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2 className="text-lg font-bold mb-2">{car.name}</h2>
-     <div onClick={handleFavoriteClick}>
-     {isFavorited ? (
-          <FavoriteIcon sx={{color:'red'}} />
-        ) : (
-          <FavoriteBorderOutlinedIcon />
-        )}
-     </div>
+        <h2 className="text-lg font-bold mb-0">{car.name}</h2>
+        <div onClick={handleFavoriteClick}>
+          {isFavorited ? (
+            <FavoriteIcon sx={{ color: "red", cursor: "pointer" }} />
+          ) : (
+            <FavoriteBorderOutlinedIcon sx={{ cursor: "pointer" }} />
+          )}
+        </div>
       </div>
+      <div className="text-gray-400 ml-1 font-medium">{car.car_type}</div>
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
