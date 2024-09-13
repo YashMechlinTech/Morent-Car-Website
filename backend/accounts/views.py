@@ -12,8 +12,6 @@ from django.middleware.csrf import get_token
 @api_view(["POST"])
 def register(request):
     data = request.data
-
-    # Basic validation
     required_fields = ["full_name", "email", "password", "confirm_password"]
     for field in required_fields:
         if field not in data:
@@ -35,10 +33,10 @@ def register(request):
 
     try:
         user = User.objects.create(
-            username=data["email"],  # Using email as username
+            username=data["email"], 
             email=data["email"],
             password=make_password(data["password"]),
-            first_name=data["full_name"],  # Save full_name to first_name
+            first_name=data["full_name"],  
         )
         
         return Response(
