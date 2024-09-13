@@ -20,29 +20,12 @@ const LoginPage = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const { login } = useAuth();
-  //getting the csrf token with this value.
-
-  function getCSRFToken() {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === 'csrftoken') {
-        return value;
-      }
-    }
-    return null;
-  }
   
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // Get CSRF token from cookies
-      const csrfToken = getCSRFToken();
-      if (!csrfToken) {
-        throw new Error("CSRF token not found.");
-      }
 
       // Send login request to the backend with CSRF token
       const response = await axios.post(
@@ -54,9 +37,8 @@ const LoginPage = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": csrfToken, // Include CSRF token in headers
           },
-          withCredentials: true, // Important to include credentials (session)
+          
         }
       );
       // Handle successful login
