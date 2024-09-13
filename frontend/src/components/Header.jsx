@@ -25,6 +25,8 @@ const Header = ({ onSearch }) => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [modalOpen, setModalOpen] = useState(false); //
   const [favoriteCars, setFavoriteCars] = useState([]);
+  const [Notifications, setNotifications] = useState([]);
+  const [NotificationModalOpen, setNotificationsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const handleInputChange = (e) => {
@@ -92,6 +94,14 @@ const Header = ({ onSearch }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const handleNotificationClick = () => {
+    setNotificationsModalOpen(true);
+  };
+  const handleClosingNotificationModal = () => {
+    setNotificationsModalOpen(false);
+  };
+
   const baseUrl = "http://localhost:8000/";
 
   return (
@@ -129,6 +139,7 @@ const Header = ({ onSearch }) => {
             src={notificationImg}
             alt="Notifications"
             className="h-8 w-8 border border-gray-300 rounded-full p-1"
+            onClick={handleNotificationClick}
           />
           <img
             src={settingsImg}
@@ -161,79 +172,120 @@ const Header = ({ onSearch }) => {
           {snackbarMessage}
         </Alert>
       </Snackbar>
-      <Modal
-  open={modalOpen}
-  onClose={handleCloseModal}
-  aria-labelledby="favorites-modal-title"
-  aria-describedby="favorites-modal-description"
->
-  <Box
-    sx={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      width: 500, 
-      bgcolor: 'background.paper',
-      borderRadius: 4, 
-      boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)',
-      p: 4,
-      maxHeight: '80vh',
-      overflowY: 'auto', 
-    }}
-  >
-    <Typography id="favorites-modal-title" variant="h5" component="h2" align="center" gutterBottom>
-      Your Favorite Cars
-    </Typography>
 
-    {favoriteCars.length > 0 ? (
-      favoriteCars.map((car) => (
+      {/* this is the Favourite cars  modal  */}
+      <Modal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="favorites-modal-title"
+        aria-describedby="favorites-modal-description"
+      >
         <Box
-          key={car.id}
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            mb: 3,
-            p: 2,
-            bgcolor: '#f9f9f9', // Slightly gray background for each car card
-            borderRadius: 3,
-            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.05)',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 500,
+            bgcolor: "background.paper",
+            borderRadius: 4,
+            boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.1)",
+            p: 4,
+            maxHeight: "80vh",
+            overflowY: "auto",
           }}
         >
-          <Box
-            component="img"
-            src={`${baseUrl}${car.image_url}`}
-            alt={car.name}
-            sx={{
-              width: '45%',
-              height: '45%',
-              borderRadius: 2,
-              objectFit: 'contain', 
-              mr:4,
-            }}
-          />
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h6" fontWeight="bold">
-              {car.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {car.description}
-            </Typography>
-            <Typography variant="body1" color="primary" fontWeight="bold">
-              ${car.price} / day
-            </Typography>
-          </Box>
-        </Box>
-      ))
-    ) : (
-      <Typography align="center" color="text.secondary">
-        You have no favorite cars yet.
-      </Typography>
-    )}
-  </Box>
-</Modal>
+          <Typography
+            id="favorites-modal-title"
+            variant="h5"
+            component="h2"
+            align="center"
+            gutterBottom
+          >
+            Your Favorite Cars
+          </Typography>
 
+          {favoriteCars.length > 0 ? (
+            favoriteCars.map((car) => (
+              <Box
+                key={car.id}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mb: 3,
+                  p: 2,
+                  bgcolor: "#f9f9f9", // Slightly gray background for each car card
+                  borderRadius: 3,
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={`${baseUrl}${car.image_url}`}
+                  alt={car.name}
+                  sx={{
+                    width: "45%",
+                    height: "45%",
+                    borderRadius: 2,
+                    objectFit: "contain",
+                    mr: 4,
+                  }}
+                />
+                <Box sx={{ flexGrow: 1 }}>
+                  <Typography variant="h6" fontWeight="bold">
+                    {car.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {car.description}
+                  </Typography>
+                  <Typography variant="body1" color="primary" fontWeight="bold">
+                    ${car.price} / day
+                  </Typography>
+                </Box>
+              </Box>
+            ))
+          ) : (
+            <Typography align="center" color="text.secondary">
+              You have no favorite cars yet.
+            </Typography>
+          )}
+        </Box>
+      </Modal>
+
+      {/* this is the notification modal  */}
+      <Modal
+        open={NotificationModalOpen}
+        onClose={handleClosingNotificationModal}
+        aria-labelledby="notification-modal-title"
+        aria-describedby="notification-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 500,
+            bgcolor: "background.paper",
+            borderRadius: 4,
+            boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.1)",
+            p: 4,
+            maxHeight: "80vh",
+            overflowY: "auto",
+          }}
+        >
+          <Typography
+            id="favorites-modal-title"
+            variant="h5"
+            component="h2"
+            align="center"
+            gutterBottom
+          >
+            Your Notifications
+          </Typography>
+        </Box>
+      </Modal>
     </header>
   );
 };
