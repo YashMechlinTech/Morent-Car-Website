@@ -5,10 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login as auth_login,logout as auth_logout
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import require_POST
-import json
-
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
+from django.middleware.csrf import get_token
 
 
 @api_view(["POST"])
@@ -50,7 +48,7 @@ def register(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_protect
+
 @api_view(['POST'])
 def login(request):
     try:
@@ -64,7 +62,8 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            return JsonResponse({"message": "Login successful"}, status=200)
+            csrf_token = get_token(request)
+            return JsonResponse({"message": "Login successful","csrfToken":csrf_token}, status=200)
         else:
             return JsonResponse({"error": "Invalid email or password"}, status=400)
     except Exception as e:

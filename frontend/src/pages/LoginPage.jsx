@@ -42,7 +42,8 @@ const LoginPage = () => {
         }
       );
       // Handle successful login
-      login(); 
+      login();
+      localStorage.setItem('csrfToken',response.data.csrfToken) 
       setSnackbarMessage(response.data.message);
       setSnackbarSeverity("success");
       setSnackbarOpen(true);

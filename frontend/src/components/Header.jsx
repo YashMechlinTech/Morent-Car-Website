@@ -54,6 +54,7 @@ const Header = ({ onSearch }) => {
         setSnackbarOpen(true);
         // Optionally redirect to login or home page
         setTimeout(() => {
+          localStorage.removeItem("csrfToken");
           logout();
         }, 1000);
         setTimeout(() => {
