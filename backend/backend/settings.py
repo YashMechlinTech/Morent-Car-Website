@@ -237,17 +237,3 @@ AWS_DEFAULT_ACL = None  # Recommended for security
 
 # Optional settings
 # AWS_QUERYSTRING_AUTH = False
-
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",  # Enables session-based authentication
-        # 'rest_framework.authentication.BasicAuthentication',  # You can also have basic auth for backup
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",  # Require authentication globally by default
-    ),
-}
-
-
-port = int(os.environ.get("PORT", 10000))
