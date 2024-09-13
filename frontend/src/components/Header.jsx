@@ -173,13 +173,13 @@ const Header = ({ onSearch }) => {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: 500, // Increase the width for more space
+      width: 500, 
       bgcolor: 'background.paper',
-      borderRadius: 4, // Smooth rounded corners
-      boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)', // Softer shadow
+      borderRadius: 4, 
+      boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)',
       p: 4,
-      maxHeight: '80vh', // Constrain the height for large lists
-      overflowY: 'auto', // Add scroll if content overflows
+      maxHeight: '80vh',
+      overflowY: 'auto', 
     }}
   >
     <Typography id="favorites-modal-title" variant="h5" component="h2" align="center" gutterBottom>
