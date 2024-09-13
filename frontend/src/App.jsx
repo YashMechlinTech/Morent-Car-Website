@@ -21,7 +21,7 @@ function App() {
               }
             />
             <Route path="/payments/:id" element={<Payments/>} />
-            <Route path="/login" element={<Homepage/>} />
+            <Route path="/login" element={<LoginPage/>} />
             <Route path="/register" element={<RegistrationPage />} />
           </Routes>
         </BrowserRouter>

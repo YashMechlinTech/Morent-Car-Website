@@ -19,11 +19,32 @@ const LoginPage = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
-
   const { login } = useAuth();
+  //getting the csrf token with this value.
+
+  function getCSRFToken() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'csrftoken') {
+        return value;
+      }
+    }
+    return null;
+  }
+  
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
+      // Get CSRF token from cookies
+      const csrfToken = getCSRFToken();
+      if (!csrfToken) {
+        throw new Error("CSRF token not found.");
+      }
+
+      // Send login request to the backend with CSRF token
       const response = await axios.post(
         "http://localhost:8000/auth/login/",
         {
@@ -33,17 +54,21 @@ const LoginPage = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken, // Include CSRF token in headers
           },
+          withCredentials: true, // Important to include credentials (session)
         }
       );
-      login(); //setting the isAuthenticated to true
+      // Handle successful login
+      login(); 
       setSnackbarMessage(response.data.message);
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
+
+      // Redirect after a successful login
       setTimeout(() => {
         navigate("/");
       }, 1000);
-    
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
       setSnackbarMessage(error.response?.data?.error || "Login failed");
@@ -51,6 +76,7 @@ const LoginPage = () => {
       setSnackbarOpen(true);
     }
   };
+
   const handleSignUp = () => {
     navigate("/register");
   };

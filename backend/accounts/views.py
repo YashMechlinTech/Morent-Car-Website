@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login as auth_login,logout as auth_logout
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 import json
 
@@ -42,6 +42,7 @@ def register(request):
             password=make_password(data["password"]),
             first_name=data["full_name"],  # Save full_name to first_name
         )
+        
         return Response(
             {"message": "User created successfully"}, status=status.HTTP_201_CREATED
         )
@@ -49,12 +50,12 @@ def register(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
-@require_POST
+@csrf_protect
+@api_view(['POST'])
 def login(request):
     try:
         # Parse the JSON request body
-        data = json.loads(request.body.decode("utf-8"))
+        data=request.data
         email = data.get("email")
         password = data.get("password")
 
@@ -69,7 +70,7 @@ def login(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
 
-@csrf_exempt
+
 @api_view(['POST'])
 def logout(request):
     if request.user:
@@ -77,3 +78,5 @@ def logout(request):
         return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
     else:
         return Response({"error": "User is not authenticated"}, status=status.HTTP_400_BAD_REQUEST)
+    
+
