@@ -92,6 +92,7 @@ const Header = ({ onSearch }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+  const baseUrl = "http://localhost:8000/";
 
   return (
     <header>
@@ -122,6 +123,7 @@ const Header = ({ onSearch }) => {
               fontSize: "30px",
               padding: "3px",
             }}
+            onClick={handleFavoriteClick} //opening the modal on click and showing the user favorites cars.
           />
           <img
             src={notificationImg}
@@ -159,6 +161,79 @@ const Header = ({ onSearch }) => {
           {snackbarMessage}
         </Alert>
       </Snackbar>
+      <Modal
+  open={modalOpen}
+  onClose={handleCloseModal}
+  aria-labelledby="favorites-modal-title"
+  aria-describedby="favorites-modal-description"
+>
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 500, // Increase the width for more space
+      bgcolor: 'background.paper',
+      borderRadius: 4, // Smooth rounded corners
+      boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)', // Softer shadow
+      p: 4,
+      maxHeight: '80vh', // Constrain the height for large lists
+      overflowY: 'auto', // Add scroll if content overflows
+    }}
+  >
+    <Typography id="favorites-modal-title" variant="h5" component="h2" align="center" gutterBottom>
+      Your Favorite Cars
+    </Typography>
+
+    {favoriteCars.length > 0 ? (
+      favoriteCars.map((car) => (
+        <Box
+          key={car.id}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            mb: 3,
+            p: 2,
+            bgcolor: '#f9f9f9', // Slightly gray background for each car card
+            borderRadius: 3,
+            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.05)',
+          }}
+        >
+          <Box
+            component="img"
+            src={`${baseUrl}${car.image_url}`}
+            alt={car.name}
+            sx={{
+              width: '45%',
+              height: '45%',
+              borderRadius: 2,
+              objectFit: 'contain', 
+              mr:4,
+            }}
+          />
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" fontWeight="bold">
+              {car.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {car.description}
+            </Typography>
+            <Typography variant="body1" color="primary" fontWeight="bold">
+              ${car.price} / day
+            </Typography>
+          </Box>
+        </Box>
+      ))
+    ) : (
+      <Typography align="center" color="text.secondary">
+        You have no favorite cars yet.
+      </Typography>
+    )}
+  </Box>
+</Modal>
+
     </header>
   );
 };
