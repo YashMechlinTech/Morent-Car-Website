@@ -20,13 +20,11 @@ const LoginPage = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const { login } = useAuth();
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-
       // Send login request to the backend with CSRF token
       const response = await axios.post(
         "http://localhost:8000/auth/login/",
@@ -38,12 +36,11 @@ const LoginPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          
         }
       );
       // Handle successful login
       login();
-      localStorage.setItem('csrfToken',response.data.csrfToken) 
+      localStorage.setItem("csrfToken", response.data.csrfToken);
       setSnackbarMessage(response.data.message);
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
