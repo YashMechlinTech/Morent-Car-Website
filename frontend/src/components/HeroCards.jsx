@@ -54,7 +54,6 @@ const HeroCards = () => {
                 borderRadius: "20px",
                 marginTop: "auto",
                 fontSize: "2vh",
-                fontFamily: "monospace",
               }}
             >
               Rental Car
@@ -120,7 +119,6 @@ const HeroCards = () => {
                 backgroundColor: "rgb(84, 166, 255)",
                 color: "white",
                 padding: "5px 10px ",
-                
                 borderRadius: "20px",
                 marginTop: "auto",
                 fontSize: "2vh", // Ensure button is at the bottom

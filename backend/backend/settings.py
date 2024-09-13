@@ -6,12 +6,18 @@ import os
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#$rhiv*4%7!d)e##m^$r&j=gbp3jjk!wb@thdd%q5+vki#t7^('
+SECRET_KEY = "django-insecure-#$rhiv*4%7!d)e##m^$r&j=gbp3jjk!wb@thdd%q5+vki#t7^("
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["localhost", ".vercel.app","127.0.0.1",".onrender.com","backend.onrender.com"]
+ALLOWED_HOSTS = [
+    "localhost",
+    ".vercel.app",
+    "127.0.0.1",
+    ".onrender.com",
+    "backend.onrender.com",
+]
 
 
 # Application definition
@@ -45,7 +51,7 @@ MIDDLEWARE = [
 
 # REST_FRAMEWORK={'DEFAULT_PERMISSION_CLASSES':['rest_framework.permission.AllowAny']}
 
-CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # If you want to allow all origins (not recommended for production):
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -59,16 +65,20 @@ CORS_ALLOW_METHODS = [
     "DELETE",
     "OPTIONS",
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",  # Allow the frontend to send CSRF tokens
+]
 # And allowed headers (optional):
 CORS_ALLOW_HEADERS = [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With",
+    "content-type",
+    "x-csrftoken",  # Allow CSRF token header
+    "authorization",
+    "accept",
+    "origin",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-
+CSRF_USE_SESSIONS = False
 
 ROOT_URLCONF = "backend.urls"
 
@@ -153,19 +163,12 @@ STATIC_ROOT = os.path.join(
     BASE_DIR, "staticfiles"
 )  # Collected static files will be here
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),  # Local static files
-#     # Add any other directories that contain static files
-# ]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 # # Configure the default file storage
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -183,7 +186,7 @@ MEDIA_URL = '/media/'
 # AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
 # AWS_SECRET_ACCESS_KEY = '2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a'
 
-# if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:        
+# if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
 #     AWS_STORAGE_BUCKET_NAME = 'media'
 #     AWS_S3_SIGNATURE_NAME = 's3v4'
 #     AWS_S3_REGION_NAME = 'ap-south-1'
@@ -213,7 +216,7 @@ MEDIA_URL = '/media/'
 #             "base_url": "/static/",  # The base URL used to serve static files
 #         },
 #     },
-    
+
 # }
 
 
@@ -221,17 +224,30 @@ MEDIA_URL = '/media/'
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Supabase S3 configuration
-AWS_ACCESS_KEY_ID = '9ebc15019aa6046dfaec3bf3646ec237'
-AWS_SECRET_ACCESS_KEY = '2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a'
-AWS_STORAGE_BUCKET_NAME = 'test'
-AWS_S3_ENDPOINT_URL = 'https://dnkzqbcvonlvdosokffc.supabase.co/storage/v1/s3'
-AWS_S3_REGION_NAME = 'ap-south-1'  # Replace with your Supabase region
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.ap-south-1.supabase.co'
-AWS_S3_SIGNATURE_VERSION = 's3v4'
-AWS_DEFAULT_ACL = None # Recommended for security
+AWS_ACCESS_KEY_ID = "9ebc15019aa6046dfaec3bf3646ec237"
+AWS_SECRET_ACCESS_KEY = (
+    "2b881685bed246d312391d40a1aa8d602d33cf015caec360cc5bff292f37d46a"
+)
+AWS_STORAGE_BUCKET_NAME = "test"
+AWS_S3_ENDPOINT_URL = "https://dnkzqbcvonlvdosokffc.supabase.co/storage/v1/s3"
+AWS_S3_REGION_NAME = "ap-south-1"  # Replace with your Supabase region
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.ap-south-1.supabase.co"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_DEFAULT_ACL = None  # Recommended for security
 
 # Optional settings
 # AWS_QUERYSTRING_AUTH = False
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",  # Enables session-based authentication
+        # 'rest_framework.authentication.BasicAuthentication',  # You can also have basic auth for backup
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",  # Require authentication globally by default
+    ),
+}
 
 
 port = int(os.environ.get("PORT", 10000))
