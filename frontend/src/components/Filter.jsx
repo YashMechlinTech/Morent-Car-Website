@@ -55,7 +55,6 @@ const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
             "& .MuiOutlinedInput-root": { borderRadius: "16px" },
             "& .MuiSelect-select": {
               fontSize: "18px",
-              
             },
           }}
           select

@@ -13,6 +13,7 @@ import {
   Modal,
   Box,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuth } from "../context/AuthContext";
@@ -141,6 +142,7 @@ const Header = ({ onSearch }) => {
         </div>
 
         <div className="flex items-center gap-4 mt-4 md:mt-0">
+          <Tooltip title="Check Out Your Favorite Cars">
           <FavoriteBorderIcon
             sx={{
               borderColor: "rgb(209, 213, 219)",
@@ -151,17 +153,22 @@ const Header = ({ onSearch }) => {
             }}
             onClick={handleFavoriteClick} //opening the modal on click and showing the user favorites cars.
           />
+          </Tooltip>
+          <Tooltip title="Notifications">
           <img
             src={notificationImg}
             alt="Notifications"
             className="h-8 w-8 border border-gray-300 rounded-full p-1"
             onClick={handleNotificationClick}
           />
-          <img
+          </Tooltip>
+        <Tooltip title='Settings'>
+        <img
             src={settingsImg}
             alt="Settings"
             className="h-8 w-8 border border-gray-300 rounded-full p-1 "
           />
+        </Tooltip>
           <img src={profileImg} alt="Profile" className="h-8 w-8 border-none" />
           <Button
             onClick={handleLogout}

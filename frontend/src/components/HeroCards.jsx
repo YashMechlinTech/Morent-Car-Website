@@ -1,7 +1,14 @@
 import React from "react";
 import LamboImg from "../assets/Lambo.svg";
 import LamboTwoImg from "../assets/LamboTwo.svg";
-import { Grid, Typography, Button, Card, CardContent } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  Tooltip,
+} from "@mui/material";
 
 const HeroCards = () => {
   return (
@@ -26,7 +33,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-                
+
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -37,7 +44,7 @@ const HeroCards = () => {
               variant="body1"
               sx={{
                 color: "white",
-                
+
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -45,19 +52,25 @@ const HeroCards = () => {
               Provide cheap car rental services and safe and comfortable
               services.
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "hsl(225, 80%, 56%)",
-                color: "white",
-                padding: "5px 10px",
-                borderRadius: "20px",
-                marginTop: "auto",
-                fontSize: "2vh",
-              }}
-            >
-              Rental Car
-            </Button>
+            <Tooltip title="Explore Cars">
+              
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "hsl(225, 80%, 56%)",
+                    color: "white",
+                    padding: "5px 10px",
+                    marginTop: "auto",
+                    fontSize: "2vh",
+                  }}
+                  onClick={() => {
+                    window.scrollTo(0, 600);
+                  }}
+                >
+                  Rental Car
+                </Button>
+             
+            </Tooltip>
           </CardContent>
           <img
             src={LamboImg}
@@ -94,7 +107,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-               
+
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -105,7 +118,7 @@ const HeroCards = () => {
               variant="body1"
               sx={{
                 color: "white",
-            
+
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -113,19 +126,23 @@ const HeroCards = () => {
               Provide cheap car rental services and safe and comfortable
               services.
             </Typography>
-            <Button
+           <Tooltip title='Check Cars'>
+           <Button
               variant="contained"
               sx={{
                 backgroundColor: "rgb(84, 166, 255)",
                 color: "white",
                 padding: "5px 10px ",
-                borderRadius: "20px",
                 marginTop: "auto",
                 fontSize: "2vh", // Ensure button is at the bottom
+              }}
+              onClick={() => {
+                window.scrollTo(0, 600);
               }}
             >
               check Now
             </Button>
+           </Tooltip>
           </CardContent>
           <img
             src={LamboTwoImg}
