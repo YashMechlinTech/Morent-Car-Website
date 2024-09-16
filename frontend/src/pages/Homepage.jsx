@@ -66,9 +66,7 @@ const Homepage = () => {
                     <h2 className="text-lg font-bold mb-2">
                       {selectedCar.name}
                     </h2>
-                    <span>
-                      <FavoriteBorderOutlined />
-                    </span>
+                
                   </div>
                   <RatingComponent />
 

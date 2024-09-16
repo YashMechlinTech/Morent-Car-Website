@@ -25,7 +25,6 @@ const Header = ({ onSearch }) => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [modalOpen, setModalOpen] = useState(false); //
   const [favoriteCars, setFavoriteCars] = useState([]);
-  const [Notifications, setNotifications] = useState([]);
   const [NotificationModalOpen, setNotificationsModalOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -78,14 +77,13 @@ const Header = ({ onSearch }) => {
   };
 
   const handleFavoriteClick = async () => {
-    // Open the modal
+    // Opening the modal on click .
     setModalOpen(true);
 
-    // Fetch the favorite cars from the backend
     try {
       const response = await axios.get("http://localhost:8000/cars/favorites/");
       if (response.status === 200) {
-        setFavoriteCars(response.data); // Set the favorite cars
+        setFavoriteCars(response.data); // Setting  the favorite cars which are fetched from the backend.
       }
     } catch (error) {
       console.error("Error fetching favorite cars:", error);
@@ -103,14 +101,32 @@ const Header = ({ onSearch }) => {
     setNotificationsModalOpen(false);
   };
 
+  const notifications = [  
+    {
+      id: 1,
+      message: "Your booking for Tesla Model S is confirmed.",
+      date: "2024-09-15",
+    },
+    {
+      id: 2,
+      message: "Your favorite car, BMW X5, is now available.",
+      date: "2024-09-16",
+    },
+    {
+      id: 3,
+      message: "New models of electric cars have been added to our fleet.",
+      date: "2024-09-17",
+    },
+  ];
+
   const baseUrl = "http://localhost:8000/";
 
   return (
     <header>
       <nav className="flex flex-wrap items-center justify-between p-4   bg-white">
         <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
-          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]" >
-           <a href="/"> MORENT ™</a>
+          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
+            <a href="/"> MORENT ™</a>
           </h1>
           <div className="border-solid border-gray-400 border-[.5px] rounded-[20px] mt-2">
             <SearchIcon />
@@ -121,7 +137,6 @@ const Header = ({ onSearch }) => {
               placeholder="Search for cars...  "
               onChange={handleInputChange}
             />
-           
           </div>
         </div>
 
@@ -285,6 +300,36 @@ const Header = ({ onSearch }) => {
           >
             Your Notifications
           </Typography>
+          {notifications.length > 0 ? (
+            notifications.map((notification) => (
+              <Box
+                key={notification.id}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mb: 3,
+                  p: 2,
+                  bgcolor: "#f9f9f9",
+                  borderRadius: 3,
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                <Box sx={{ flexGrow: 1 }}>
+                  <Typography variant="body1" fontWeight="bold">
+                    {notification.message}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {notification.date}
+                  </Typography>
+                </Box>
+              </Box>
+            ))
+          ) : (
+            <Typography align="center" color="text.secondary">
+              You have no new notifications.
+            </Typography>
+          )}
         </Box>
       </Modal>
     </header>
