@@ -18,7 +18,7 @@ const Homepage = () => {
   const [dropoffLocation, setDropoffLocation] = useState("");
   const handleRentClick = (car) => {
     setSelectedCar(car);
-    window.scrollTo(0, 0);
+    window.scrollTo({top:0,behavior:'smooth'});
   };
 
   const handleBackClick = () => {

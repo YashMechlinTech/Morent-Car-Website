@@ -64,7 +64,7 @@ const HeroCards = () => {
                     fontSize: "2vh",
                   }}
                   onClick={() => {
-                    window.scrollTo(0, 600);
+                    window.scrollTo({behavior:"smooth",top:600});
                   }}
                 >
                   Rental Car
@@ -137,7 +137,7 @@ const HeroCards = () => {
                 fontSize: "2vh", // Ensure button is at the bottom
               }}
               onClick={() => {
-                window.scrollTo(0, 600);
+                window.scrollTo({behavior:"smooth",top:600});
               }}
             >
               check Now
