@@ -18,7 +18,7 @@ const Homepage = () => {
   const [dropoffLocation, setDropoffLocation] = useState("");
   const handleRentClick = (car) => {
     setSelectedCar(car);
-    window.scrollTo({top:0,behavior:'smooth'});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBackClick = () => {
@@ -70,9 +70,11 @@ const Homepage = () => {
                     </h2>
                     <Tooltip title="This car is checked and it has passed the safetyCheck">
                       <span>
-                     
-                        <a href="https://www.bncap.in/">
-                          <VerifiedUserIcon color="success" />
+                        <a href="https://www.globalncap.org/">
+                          <VerifiedUserIcon
+                            sx={{ width: "48px", height: "36x" }}
+                            color="success"
+                          />
                         </a>
                       </span>
                     </Tooltip>

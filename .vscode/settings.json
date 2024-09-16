@@ -2,5 +2,5 @@
     "git.ignoreLimitWarning": true,
     "git.autofetch": true,
     "python.analysis.typeCheckingMode": "basic",
-    "editor.fontSize": 10
+    "editor.fontSize": 14
 }
