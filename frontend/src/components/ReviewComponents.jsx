@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Grid, Typography, Avatar, Card, CardContent, Rating, Button } from '@mui/material';
 
 // Dummy data for reviews
@@ -23,10 +23,38 @@ const reviews = [
     review:
       'We are greatly helped by the services of the MORENT Application. Morent has low prices and also a wide variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.',
   },
-  
+  {
+    id: 3,
+    name: 'Emily Wilson',
+    position: 'COO at Shopify',
+    date: '19 July 2022',
+    avatarUrl: 'https://i.pravatar.cc/150?img=3',
+    rating: 5,
+    review:
+      'The MORENT app made car rentals so easy for us! The variety and pricing are unmatched, and we felt extremely comfortable throughout the process.',
+  },
+  {
+    id: 4,
+    name: 'Michael Jordan',
+    position: 'Manager at Nike',
+    date: '18 July 2022',
+    avatarUrl: 'https://i.pravatar.cc/150?img=4',
+    rating: 4,
+    review:
+      'A very user-friendly app with plenty of options for car rentals. The customer support is quick and reliable, which is a big plus.',
+  },
+  // Add more review data here if needed
 ];
 
 function ReviewSection() {
+  const [visibleReviews, setVisibleReviews] = useState(2);
+  const [showAll, setShowAll] = useState(false);
+
+  const handleShowAll = () => {
+    setShowAll(!showAll);
+    setVisibleReviews(showAll ? 2 : reviews.length);
+  };
+
   return (
     <Box sx={{ backgroundColor: '#f9f9f9', p: 4, borderRadius: 2 }}>
       <Grid container justifyContent="space-between" alignItems="center">
@@ -34,12 +62,12 @@ function ReviewSection() {
           Reviews
         </Typography>
         <Button variant="contained" color="primary" sx={{ borderRadius: 12 }}>
-          13
+          {reviews.length}
         </Button>
       </Grid>
 
       <Grid container spacing={2} mt={2}>
-        {reviews.map((review) => (
+        {reviews.slice(0, visibleReviews).map((review) => (
           <Grid item xs={12} key={review.id}>
             <Card sx={{ borderRadius: 2 }}>
               <CardContent>
@@ -76,8 +104,8 @@ function ReviewSection() {
       </Grid>
 
       <Box mt={2} textAlign="center">
-        <Button variant="text" color="primary" endIcon={<span>&#x25BC;</span>}>
-          Show All
+        <Button variant="text" color="primary" onClick={handleShowAll} endIcon={<span>{showAll ? '▲' : '▼'}</span>}>
+          {showAll ? 'Show Less' : 'Show All'}
         </Button>
       </Box>
     </Box>

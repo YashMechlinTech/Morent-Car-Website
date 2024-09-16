@@ -14,6 +14,9 @@ const CarList = ({ searchTerm, onRentClick, pickupLocation }) => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.cars);
 
+  const [visibleCars,setVisibleCars]=useState(4)
+  const [showAll,setShowAll]=useState(false)
+
   useEffect(() => {
     if (cars.length === 0) {
       dispatch(fetchCars());
@@ -45,15 +48,22 @@ const CarList = ({ searchTerm, onRentClick, pickupLocation }) => {
       car.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleShowAllCars=()=>{
+    setShowAll(!showAll);
+    setVisibleCars(showAll ? 4 : filteredCars.length)
+  }
+
   return (
     <>
       <div className="w-full flex  p-4 font-medium justify-between">
         <div className="text-gray-400 font-normal">Popular car</div>
-        <div className="text-blue-500">View All </div>
+        <div className="text-blue-500 cursor-pointer" onClick={handleShowAllCars}>
+          {showAll ? "Show Less Cars" : "Show All Cars"}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredCars.map((car) => (
+        {filteredCars.slice(0,visibleCars).map((car) => (
           <CarCard key={car.id} car={car} onRentClick={onRentClick} />
         ))}
       </div>
