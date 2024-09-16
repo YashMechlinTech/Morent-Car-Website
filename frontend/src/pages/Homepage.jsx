@@ -3,7 +3,8 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import HeroCards from "../components/HeroCards.jsx";
 import CarList from "../components/CarList.jsx";
-import FavoriteBorderOutlined from "@mui/icons-material/FavoriteBorderOutlined.js";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Tooltip from "@mui/material/Tooltip"; // Import Tooltip component
 import RatingComponent from "../components/RatingComponent.jsx";
 import ReviewSection from "../components/ReviewComponents.jsx";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,7 @@ const Homepage = () => {
   const [dropoffLocation, setDropoffLocation] = useState("");
   const handleRentClick = (car) => {
     setSelectedCar(car);
+    window.scrollTo(0, 0);
   };
 
   const handleBackClick = () => {
@@ -61,13 +63,21 @@ const Homepage = () => {
                   className=" h-40 rounded-lg object-contain mb-4"
                 />
 
-                <div className="w-full">
+                <div className="w-full p-5">
                   <div className="flex justify-between w-full">
                     <h2 className="text-lg font-bold mb-2">
                       {selectedCar.name}
                     </h2>
-                
+                    <Tooltip title="This car is checked and it has passed the safetyCheck">
+                      <span>
+                     
+                        <a href="https://www.bncap.in/">
+                          <VerifiedUserIcon color="success" />
+                        </a>
+                      </span>
+                    </Tooltip>
                   </div>
+
                   <RatingComponent />
 
                   <p className="text-gray-600 mb-4">
