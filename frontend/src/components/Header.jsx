@@ -3,7 +3,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import notificationImg from "../assets/bell.svg";
 import settingsImg from "../assets/settings.svg";
 import profileImg from "../assets/Profile.svg";
-import TuneIcon from "@mui/icons-material/Tune";
+
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Button,
@@ -109,8 +109,8 @@ const Header = ({ onSearch }) => {
     <header>
       <nav className="flex flex-wrap items-center justify-between p-4   bg-white">
         <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
-          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
-            MORENT ™
+          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]" >
+           <a href="/"> MORENT ™</a>
           </h1>
           <div className="border-solid border-gray-400 border-[.5px] rounded-[20px] mt-2">
             <SearchIcon />
@@ -121,7 +121,7 @@ const Header = ({ onSearch }) => {
               placeholder="Search for cars...  "
               onChange={handleInputChange}
             />
-            <TuneIcon className="mr-2" />
+           
           </div>
         </div>
 

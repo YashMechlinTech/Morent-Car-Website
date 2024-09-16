@@ -55,7 +55,7 @@ def login(request):
         email = data.get("email")
         password = data.get("password")
 
-        # Authenticate the user
+        # Authenticating the user
         user = authenticate(request, username=email, password=password)
 
         if user is not None:

@@ -26,7 +26,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-                fontFamily: "monospace",
+                
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -94,7 +94,7 @@ const HeroCards = () => {
               variant="h3"
               sx={{
                 color: "white",
-                fontFamily: "monospace",
+               
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
@@ -105,7 +105,7 @@ const HeroCards = () => {
               variant="body1"
               sx={{
                 color: "white",
-                fontFamily: "monospace",
+            
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
               }}
