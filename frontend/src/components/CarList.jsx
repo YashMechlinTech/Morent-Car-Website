@@ -92,7 +92,7 @@ const CarCard = React.memo(({ car, onRentClick }) => {
         <h2 className="text-lg font-bold mb-0">{car.name}</h2>
         <div onClick={handleFavoriteClick}>
           {isFavorited ? (
-            <FavoriteIcon sx={{ color: "red", cursor: "pointer" }} />
+            <FavoriteIcon sx={{ color: "red", cursor: "pointer"  }} />
           ) : (
             <FavoriteBorderOutlinedIcon sx={{ cursor: "pointer" }} />
           )}
@@ -102,8 +102,8 @@ const CarCard = React.memo(({ car, onRentClick }) => {
       <img
         src={`${baseUrl}${car.image_url}`}
         alt={car.name}
-        className="w-full h-40 rounded-lg object-contain mb-4"
-      />
+        className="w-full h-40 rounded-lg object-contain mb-4" 
+        onClick={() => onRentClick(car)} />
       <div className="flex justify-between items-center">
         <div>
           <LocalGasStationIcon sx={{ color: "green" }} />
