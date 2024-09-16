@@ -28,9 +28,9 @@ const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
 
   const handleswapfunctionality = () => {
     setPickupLocation(dropoffLocation);
-    onPickupLocationChange(dropoffLocation)
+    onPickupLocationChange(dropoffLocation);
     setDropoffLocation(pickupLocation);
-    onDropoffLocationChange(pickupLocation)
+    onDropoffLocationChange(pickupLocation);
   };
 
   return (
@@ -54,9 +54,8 @@ const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
           sx={{
             "& .MuiOutlinedInput-root": { borderRadius: "16px" },
             "& .MuiSelect-select": {
-              fontFamily: "monospace", // Custom font
-              fontSize: "18px", // Custom font size
-              fontWeight: "bold", // Custom font weight
+              fontSize: "18px",
+              
             },
           }}
           select
@@ -101,9 +100,7 @@ const Filter = ({ onPickupLocationChange, onDropoffLocationChange }) => {
           sx={{
             "& .MuiOutlinedInput-root": { borderRadius: "16px" },
             "& .MuiSelect-select": {
-              fontFamily: "monospace", // Custom font
-              fontSize: "18px", // Custom font size
-              fontWeight: "bold", // Custom font weight
+              fontSize: "18px",
             },
           }}
           select
