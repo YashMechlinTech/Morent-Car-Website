@@ -75,7 +75,7 @@ const LoginPage = () => {
           fontWeight: "bold",
           fontSize: "50px",
           marginBottom: "2vh",
-          color: "rgb(37 99 235) ",
+          color: "#F0A8D0 ",
         }}
       >
         MORENT ™
@@ -122,14 +122,14 @@ const LoginPage = () => {
                   variant="contained"
                   onClick={handleLogin}
                   sx={{
-                    backgroundColor: "skyblue",
+                    backgroundColor: "#F0A8D0",
                     "&:hover": {
                       backgroundColor: "white !important",
-                      borderColor: "skyblue !important",
+                      borderColor: "black !important",
                       borderWidth: "2px",
-                      color: "skyblue",
+                      color: "#F0A8D0",
                       "&:before": {
-                        backgroundColor: "skyblue !important",
+                        backgroundColor: "#F0A8D0 !important",
                         color: "#fff",
                       },
                     },
@@ -142,14 +142,14 @@ const LoginPage = () => {
                   onClick={handleSignUp}
                   variant="contained"
                   sx={{
-                    backgroundColor: "skyblue",
+                    backgroundColor: "#F0A8D0",
                     "&:hover": {
                       backgroundColor: "white !important",
-                      borderColor: "skyblue !important",
+                      borderColor: "black !important",
                       borderWidth: "2px",
-                      color: "skyblue",
+                      color: "#F0A8D0",
                       "&:before": {
-                        backgroundColor: "skyblue !important",
+                        backgroundColor: "#F0A8D0 !important",
                         color: "#fff",
                       },
                     },
