@@ -64,7 +64,7 @@ const RegistrationPage = () => {
           fontWeight: "bold",
           fontSize: "40px",
           marginBottom: "2vh",
-          color: "rgb(37 99 235)",
+          color: "#F0A8D0",
         }}
       >
         Morent ™
@@ -200,6 +200,7 @@ const RegistrationPage = () => {
                     name="acceptTerms"
                     checked={formData.acceptTerms}
                     onChange={handleChange}
+                    style={{color:'#F0A8D0'}}
                     required
                   />
                 }
@@ -215,11 +216,11 @@ const RegistrationPage = () => {
                 color="primary"
                 fullWidth
                 sx={{
-                  backgroundColor: "rgb(37 99 235)",
+                  backgroundColor: "#F0A8D0",
                   "&:hover": {
                     backgroundColor: "white",
-                    color: "rgb(37 99 235)",
-                    border: "1px solid rgb(37 99 235)",
+                    color: "#F0A8D0",
+                    border: "1px solid #F0A8D0",
                   },
                 }}
               >
