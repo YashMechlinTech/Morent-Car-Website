@@ -61,7 +61,7 @@ function ReviewSection() {
         <Typography variant="h5" fontWeight="bold">
           Reviews
         </Typography>
-        <Button variant="contained" color="primary" sx={{ borderRadius: 12 }}>
+        <Button variant="contained" style={{backgroundColor:'#FF90BC'}} sx={{ borderRadius: 12 }}>
           {reviews.length}
         </Button>
       </Grid>
@@ -104,7 +104,8 @@ function ReviewSection() {
       </Grid>
 
       <Box mt={2} textAlign="center">
-        <Button variant="text" color="primary" onClick={handleShowAll} endIcon={<span>{showAll ? '▲' : '▼'}</span>}>
+        <Button variant="text" style={{
+          color:'#FF90BC'}} onClick={handleShowAll} endIcon={<span>{showAll ? '▲' : '▼'}</span>}>
           {showAll ? 'Show Less' : 'Show All'}
         </Button>
       </Box>

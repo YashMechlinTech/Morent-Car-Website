@@ -17,7 +17,7 @@ const HeroCards = () => {
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: "rgb(84, 166, 255)",
+            backgroundColor: "#E6E6FA",
             borderRadius: "16px",
             position: "relative",
             height: "50vh",
@@ -32,7 +32,7 @@ const HeroCards = () => {
             <Typography
               variant="h3"
               sx={{
-                color: "white",
+                color: "#333333",
 
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
@@ -43,7 +43,7 @@ const HeroCards = () => {
             <Typography
               variant="body1"
               sx={{
-                color: "white",
+                color: "#333333",
 
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
@@ -53,23 +53,21 @@ const HeroCards = () => {
               services.
             </Typography>
             <Tooltip title="Explore Cars">
-              
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "hsl(225, 80%, 56%)",
-                    color: "white",
-                    padding: "5px 10px",
-                    marginTop: "auto",
-                    fontSize: "2vh",
-                  }}
-                  onClick={() => {
-                    window.scrollTo({behavior:"smooth",top:600});
-                  }}
-                >
-                  Rental Car
-                </Button>
-             
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#F0A8D0",
+                  color: "white",
+                  marginTop: "auto",
+                  fontSize: "2vh",
+                  borderRadius:'20px'
+                }}
+                onClick={() => {
+                  window.scrollTo({ behavior: "smooth", top: 600 });
+                }}
+              >
+                Rental Car
+              </Button>
             </Tooltip>
           </CardContent>
           <img
@@ -91,7 +89,7 @@ const HeroCards = () => {
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: "hsl(225, 80%, 56%)",
+            backgroundColor: "#E6E6FA",
             borderRadius: "16px",
             position: "relative",
             height: "50vh",
@@ -106,7 +104,7 @@ const HeroCards = () => {
             <Typography
               variant="h3"
               sx={{
-                color: "white",
+                color: "#333333",
 
                 fontSize: "6vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
@@ -117,7 +115,7 @@ const HeroCards = () => {
             <Typography
               variant="body1"
               sx={{
-                color: "white",
+                color: "#333333",
 
                 fontSize: "3vh", // Adjusted font size for better scaling
                 marginBottom: "16px",
@@ -126,23 +124,23 @@ const HeroCards = () => {
               Provide cheap car rental services and safe and comfortable
               services.
             </Typography>
-           <Tooltip title='Check Cars'>
-           <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(84, 166, 255)",
-                color: "white",
-                padding: "5px 10px ",
-                marginTop: "auto",
-                fontSize: "2vh", // Ensure button is at the bottom
-              }}
-              onClick={() => {
-                window.scrollTo({behavior:"smooth",top:600});
-              }}
-            >
-              check Now
-            </Button>
-           </Tooltip>
+            <Tooltip title="Check Cars">
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor:" #F0A8D0",
+                  color: "white",
+                  borderRadius:'20px',
+                  marginTop: "auto",
+                  fontSize: "2vh", // Ensure button is at the bottom
+                }}
+                onClick={() => {
+                  window.scrollTo({ behavior: "smooth", top: 600 });
+                }}
+              >
+                check Now
+              </Button>
+            </Tooltip>
           </CardContent>
           <img
             src={LamboTwoImg}
