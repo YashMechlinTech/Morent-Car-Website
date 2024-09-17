@@ -203,7 +203,7 @@ const Payments = () => {
                  <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "hsl(225, 80%, 56%)",
+                    backgroundColor: "#FF90BC",
                     color: "white",
                     padding: "5px 10px",
                     marginTop: "auto",

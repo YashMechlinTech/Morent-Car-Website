@@ -126,14 +126,14 @@ const Header = ({ onSearch }) => {
     <header>
       <nav className="flex flex-wrap items-center justify-between p-4   bg-white">
         <div className="flex items-center gap-9 w-full md:w-auto flex-grow">
-          <h1 className="text-blue-600 font-bold text-lg md:text-xl font-[Plus Jakarta Sans]">
-            <a href="/"> MORENT ™</a>
+          <h1 className="font-bold text-lg md:text-xl font-[Plus Jakarta Sans]" style={{color:'#FF90BC'}}>
+            <a href="/"> MORENT™</a>
           </h1>
-          <div className="border-solid border-gray-400 border-[.5px] rounded-[10px] mt-2">
+          <div className="border-solid  border-[.5px] rounded-[10px] mt-2" style={{ borderColor: "#FF90BC",}}>
             <SearchIcon />
             <input
               className="focus:outline-none"
-              style={{ border: "none", borderColor: "white", width: "30vw" }}
+              style={{ border: "none",  width: "30vw" }}
               type="text"
               placeholder="Search for cars...  "
               onChange={handleInputChange}
@@ -145,7 +145,7 @@ const Header = ({ onSearch }) => {
           <Tooltip title="Check Out Your Favorite Cars">
           <FavoriteBorderIcon
             sx={{
-              borderColor: "rgb(209, 213, 219)",
+              borderColor: "#FF90BC",
               borderRadius: "50%",
               borderWidth: "1px",
               fontSize: "30px",
@@ -158,7 +158,7 @@ const Header = ({ onSearch }) => {
           <img
             src={notificationImg}
             alt="Notifications"
-            className="h-8 w-8 border border-gray-300 rounded-full p-1"
+            className="h-8 w-8 border  rounded-full p-1" style={{ borderColor: "#FF90BC",}}
             onClick={handleNotificationClick}
           />
           </Tooltip>
@@ -166,16 +166,20 @@ const Header = ({ onSearch }) => {
         <img
             src={settingsImg}
             alt="Settings"
-            className="h-8 w-8 border border-gray-300 rounded-full p-1 "
+            className="h-8 w-8 border rounded-full p-1 "style={{ borderColor: "#FF90BC",}}
           />
         </Tooltip>
-          <img src={profileImg} alt="Profile" className="h-8 w-8 border-none" />
+          <img src={profileImg} alt="Profile" className="h-8 w-8 border" style={{borderRadius:'50%',
+          borderColor: "#FF90BC",
+
+          }}/>
           <Button
             onClick={handleLogout}
             variant="contained"
             endIcon={<LogoutIcon />}
             sx={{
               fontFamily: "monospace",
+              backgroundColor:'#FF90BC'
             }}
           >
             Logout

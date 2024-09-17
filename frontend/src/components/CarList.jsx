@@ -59,7 +59,8 @@ const CarList = ({ searchTerm, onRentClick, pickupLocation }) => {
       <div className="w-full flex  p-4 font-medium justify-between">
         <div className="text-gray-400 font-normal">Popular car</div>
         <div
-          className="text-blue-500 cursor-pointer"
+          className= "cursor-pointer"
+          style={{color:'#FF90BC'}}
           onClick={handleShowAllCars}
         >
           {showAll ? "Show Less Cars" : "Show All Cars"}
@@ -111,7 +112,7 @@ const CarCard = React.memo(({ car, onRentClick }) => {
           <h2 className="text-lg font-bold mb-0">{car.name}</h2>
           <div onClick={handleFavoriteClick}>
             {isFavorited ? (
-              <FavoriteIcon sx={{ color: "red", cursor: "pointer" }} />
+              <FavoriteIcon sx={{ color: "#FF90BC", cursor: "pointer" }} />
             ) : (
               <FavoriteBorderOutlinedIcon sx={{ cursor: "pointer" }} />
             )}
@@ -149,7 +150,8 @@ const CarCard = React.memo(({ car, onRentClick }) => {
         <div className="flex justify-between items-center">
           <span className="text-lg font-bold">${car.price}/day</span>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-blue-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full"
+            style={{backgroundColor:'#FF90BC'}}
             onClick={() => onRentClick(car)}
           >
             Rent Now
